@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEE.DO | O seu parceiro de mediação - Ganhos Extra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        'beedo-blue': '#455CE9',
+                        'beedo-orange': '#FF8A00',
+                        'beedo-orange-light': '#FFF3E5',
+                        'beedo-dark': '#151921',
+                        'beedo-gray-light': '#F8F9FA',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'float': '0 20px 40px -10px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .text-outline-orange {
+            color: transparent;
+            -webkit-text-stroke: 1px #FF8A00;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 138, 0, 0.08) 100%);
+        }
+
+        /* Range slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #FF8A00;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #E5E7EB;
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        /* Accordion transition for FAQ */
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Chat Widget */
+        #chat-window {
+            display: none;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #chat-window.open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- Header -->
+    <header
+        class="py-5 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto w-full absolute top-0 left-0 right-0 z-50">
+        <div class="flex items-center gap-2">
+            <img src="/logos/logo-color.png" alt="BEE.DO Logo" class="h-8 w-auto">
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="#vantagens"
+                class="text-sm font-semibold text-gray-600 hover:text-beedo-blue transition-colors">Vantagens</a>
+            <a href="#simulador"
+                class="text-sm font-semibold text-gray-600 hover:text-beedo-blue transition-colors">Simulador</a>
+            <a href="#faq" class="text-sm font-semibold text-gray-600 hover:text-beedo-blue transition-colors">FAQ</a>
+        </div>
+        <div>
+            <a href="#contacto"
+                class="bg-beedo-orange text-white px-6 py-2.5 rounded-full text-sm font-bold hover:-translate-y-0.5 transition-transform shadow-md hover:shadow-lg inline-block">
+                Quero ser Parceiro
+            </a>
+        </div>
+    </header>
+
+    <!-- Super Premium Hero Section matching reference style -->
+    <section
+        class="relative pt-32 pb-16 px-6 md:px-12 lg:pt-40 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Abstract gradient blob -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-beedo-blue/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="relative z-10 flex flex-col items-start">
+            <div
+                class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-beedo-blue text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100">
+                100% de Comissões
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-beedo-dark leading-[1.1] mb-6 tracking-tight">
+                Escale o seu negócio <br>
+                <span class="text-beedo-orange italic pr-2">com total</span> liberdade
+            </h1>
+            <p class="text-gray-500 text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-md">
+                Junte-se à maior rede cooperativa. Mantenha 100% das suas comissões e ganhe a força negocial de uma
+                carteira de 10M€.
+            </p>
+            <div class="flex flex-col sm:flex-row w-full sm:w-auto gap-4">
+                <a href="#simulador"
+                    class="bg-beedo-blue text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-beedo-blue/30 hover:-translate-y-1 transition-transform flex items-center justify-center gap-2 w-full sm:w-auto text-lg text-center">
+                    Simular Ganhos <i class="fas fa-arrow-down text-sm"></i>
+                </a>
+                <a href="#contacto"
+                    class="bg-white text-beedo-dark border border-gray-200 px-8 py-4 rounded-full font-bold shadow-soft hover:border-gray-300 transition-colors w-full sm:w-auto text-lg text-center">
+                    Agendar Reunião
+                </a>
+            </div>
+        </div>
+
+        <!-- 3D-ish visual representing Tech Hub, adapted to new clean style -->
+        <div
+            class="relative rounded-[2rem] overflow-visible mt-8 lg:mt-0 hero-gradient flex items-center justify-center aspect-square md:aspect-[4/3]">
+            <div class="absolute inset-0 bg-beedo-blue/5 rounded-[3rem] transform -rotate-3 scale-105 -z-10"></div>
+
+            <div class="bg-white p-8 rounded-[2rem] shadow-soft border border-gray-100 w-full max-w-md relative z-10">
+                <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+                    <span class="font-bold text-sm text-gray-500 uppercase tracking-widest">Plataforma LLUNI</span>
+                    <i class="fas fa-shield-alt text-beedo-orange text-xl"></i>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-blue-50 text-beedo-blue rounded-lg flex items-center justify-center"><i
+                                class="fas fa-database"></i></div>
+                        <div>
+                            <p class="font-bold text-beedo-dark text-sm">ERP Integrado</p>
+                            <p class="text-xs text-gray-400 font-medium">Gestão centralizada de carteira</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-10 h-10 bg-orange-50 text-beedo-orange rounded-lg flex items-center justify-center">
+                            <i class="fas fa-funnel-dollar"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-beedo-dark text-sm">CRM de Vendas</p>
+                            <p class="text-xs text-gray-400 font-medium">Automação e funil comercial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Badge for Metrics -->
+            <div
+                class="absolute -bottom-6 -right-4 md:-right-8 bg-beedo-dark p-6 rounded-2xl shadow-float z-20 w-48 text-center animate-[bounce_5s_infinite]">
+                <p class="text-3xl font-extrabold text-white mb-1"><span class="text-beedo-orange">+</span> 10M€</p>
+                <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Carteira Conjunta</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares de Valor (Vantagens) -->
+    <section id="vantagens" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center mb-16 flex flex-col items-center">
+            <h2 class="text-4xl font-extrabold text-beedo-dark mb-4">Porquê a <br> Bee.Do?</h2>
+            <div class="w-12 h-1.5 bg-beedo-orange rounded-full"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div
+                class="bg-gray-50 p-10 rounded-[2rem] hover:-translate-y-2 transition-transform border border-gray-100">
+                <div
+                    class="w-14 h-14 bg-beedo-orange-light rounded-2xl flex items-center justify-center text-beedo-orange mb-8">
+                    <i class="fas fa-crown text-xl"></i>
+                </div>
+                <h3 class="font-bold text-beedo-dark text-xl mb-4">Autonomia Absoluta</h3>
+                <p class="text-sm text-gray-500 font-medium leading-relaxed">Não somos um franchising. Mantém a sua
+                    marca, a sua carteira e total liberdade de gestão comercial.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="bg-gray-50 p-10 rounded-[2rem] hover:-translate-y-2 transition-transform border border-gray-100">
+                <div
+                    class="w-14 h-14 bg-beedo-blue/10 rounded-2xl flex items-center justify-center text-beedo-blue mb-8">
+                    <i class="fas fa-chart-line text-xl"></i>
+                </div>
+                <h3 class="font-bold text-beedo-dark text-xl mb-4">Rentabilidade Máxima</h3>
+                <p class="text-sm text-gray-500 font-medium leading-relaxed">Zero retenções. Aceda à totalidade das
+                    remunerações negociadas através da força da nossa aliança.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="bg-gray-50 p-10 rounded-[2rem] hover:-translate-y-2 transition-transform border border-gray-100">
+                <div class="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-600 mb-8">
+                    <i class="fas fa-door-open text-xl"></i>
+                </div>
+                <h3 class="font-bold text-beedo-dark text-xl mb-4">Sem Fidelizações Cegas</h3>
+                <p class="text-sm text-gray-500 font-medium leading-relaxed">Liberdade total de saída a qualquer
+                    momento. A nossa única força de retenção é o valor que criamos para si.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulador Interativo (Adapted to Clean Design) -->
+    <section id="simulador" class="py-24 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-beedo-dark text-white rounded-[3rem] p-10 md:p-16 shadow-float relative overflow-hidden">
+                <!-- Abstract curve background -->
+                <div class="absolute -right-40 -bottom-40 w-96 h-96 bg-beedo-orange/20 rounded-full blur-[80px]"></div>
+
+                <div class="relative z-10 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+                    <!-- Left: Sliders -->
+                    <div class="space-y-12">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">O que está a <br><span
+                                    class="text-beedo-orange italic">perder</span> hoje?</h2>
+                            <p class="text-gray-400 font-medium text-lg mb-10">Use o simulador para calcular o lucro
+                                extra imediato ao transitar para o modelo Bee.Do.</p>
+                        </div>
+
+                        <div class="space-y-8">
+                            <div>
+                                <div class="flex justify-between mb-4 items-end">
+                                    <label class="font-bold text-sm uppercase tracking-wider text-gray-300">A Sua
+                                        Carteira Anual</label>
+                                    <div class="font-extrabold text-2xl text-white" id="portfolioValue">250.000 €</div>
+                                </div>
+                                <div class="relative">
+                                    <input type="range" id="portfolioRange" min="50000" max="2500000" step="10000"
+                                        value="250000">
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-4 items-end">
+                                    <label class="font-bold text-sm uppercase tracking-wider text-gray-300">Comissão
+                                        Retida (Atual)</label>
+                                    <div class="font-extrabold text-2xl text-beedo-orange" id="splitValue">20 %</div>
+                                </div>
+                                <div class="relative">
+                                    <input type="range" id="splitRange" min="5" max="50" step="1" value="20">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Results Card -->
+                    <div class="bg-white text-beedo-dark p-10 rounded-[2.5rem] text-center shadow-2xl relative">
+                        <div
+                            class="absolute -top-6 left-1/2 -translate-x-1/2 bg-beedo-orange text-white text-xs font-bold uppercase tracking-widest px-6 py-2 rounded-full whitespace-nowrap shadow-soft">
+                            Lucro Extra Estimado
+                        </div>
+
+                        <div class="text-6xl md:text-7xl font-black text-beedo-dark mt-6 mb-4 tracking-tighter"
+                            id="savingsResult">12.500 €</div>
+
+                        <p class="text-gray-500 text-sm font-medium leading-relaxed mb-8 max-w-sm mx-auto">
+                            Valor projetado (limpo) que passa a entrar na sua operação anualmente ao adotar a Bee.Do.
+                        </p>
+
+                        <a href="#contacto"
+                            class="w-full bg-beedo-blue hover:bg-blue-600 text-white font-bold py-4 rounded-full transition-colors block text-lg shadow-md shadow-beedo-blue/20">
+                            Recuperar Este Valor
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section id="faq" class="py-24 px-6 md:px-12 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-extrabold text-beedo-dark mb-4">Transparência <br> <span
+                    class="text-beedo-orange italic">Total</span></h2>
+            <p class="text-gray-500">As dúvidas mais comuns sobre o nosso modelo</p>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+            <!-- Interativo -->
+            <div class="border-b border-gray-200 faq-item active">
+                <button class="w-full flex justify-between items-center py-5 text-left faq-btn focus:outline-none"
+                    onclick="this.parentElement.classList.toggle('active')">
+                    <span class="font-bold text-beedo-dark text-lg">A Bee.Do é um franchising?</span>
+                    <i class="flex-shrink-0 fas fa-chevron-down text-gray-400 text-sm faq-icon"></i>
+                </button>
+                <div class="faq-answer text-sm text-gray-500 font-medium leading-relaxed">
+                    Absolutamente não. É um ecossistema colaborativo focado na eficiência. Mantém a sua marca, a sua
+                    carteira, e a sua autonomia. Entramos apenas com a escala e tecnologia.
+                </div>
+            </div>
+
+            <div class="border-b border-gray-200 faq-item">
+                <button class="w-full flex justify-between items-center py-5 text-left faq-btn focus:outline-none"
+                    onclick="this.parentElement.classList.toggle('active')">
+                    <span class="font-bold text-beedo-dark text-lg">Quais são as condições de "lock-in"?</span>
+                    <i class="flex-shrink-0 fas fa-chevron-down text-gray-400 text-sm faq-icon"></i>
+                </button>
+                <div class="faq-answer text-sm text-gray-500 font-medium leading-relaxed">
+                    Nenhumas. Aderir à BEE.DO não o prende num contrato cego. A fidelização faz-se pelo valor entregue
+                    mensualmente. Se desejar sair, fá-lo com a mesma facilidade com que entrou.
+                </div>
+            </div>
+
+            <div class="border-b border-gray-200 faq-item">
+                <button class="w-full flex justify-between items-center py-5 text-left faq-btn focus:outline-none"
+                    onclick="this.parentElement.classList.toggle('active')">
+                    <span class="font-bold text-beedo-dark text-lg">Como é o acesso à plataforma tecnológica?</span>
+                    <i class="flex-shrink-0 fas fa-chevron-down text-gray-400 text-sm faq-icon"></i>
+                </button>
+                <div class="faq-answer text-sm text-gray-500 font-medium leading-relaxed">
+                    Toda a infraestrutura LLUNI (ERP, CRM, Multi-tarificadores) está incluída no pack de parceiro
+                    BEE.DO. Sem custos extra surpresa, tudo pronto a usar no momento 0.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário & Agendamento -->
+    <section id="contacto" class="py-24 px-6 md:px-12 max-w-7xl mx-auto bg-gray-50/50">
+        <div class="bg-white rounded-[3rem] shadow-soft border border-gray-100 overflow-hidden">
+            <div class="grid lg:grid-cols-5">
+
+                <!-- Left: Form -->
+                <div class="lg:col-span-2 p-10 md:p-14 border-r border-gray-100">
+                    <div
+                        class="inline-flex items-center px-4 py-1.5 rounded-full bg-beedo-orange-light text-beedo-orange text-xs font-bold uppercase tracking-wider mb-6">
+                        Análise Gratuita
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-beedo-dark mb-4 tracking-tight">Dê o Próximo Passo</h3>
+                    <p class="text-gray-500 font-medium text-sm mb-10 leading-relaxed">Deixe o seu contacto. Um partner
+                        da Bee.Do ligará para um diagnóstico preliminar e sem compromisso.</p>
+
+                    <form class="space-y-4"
+                        onsubmit="event.preventDefault(); this.reset(); document.getElementById('success-notif').classList.remove('hidden');">
+                        <input type="text" placeholder="Nome Completo" required
+                            class="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 focus:border-beedo-blue focus:ring-1 focus:ring-beedo-blue outline-none transition-all font-medium">
+                        <input type="email" placeholder="E-mail Profissional" required
+                            class="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 focus:border-beedo-blue focus:ring-1 focus:ring-beedo-blue outline-none transition-all font-medium">
+                        <input type="tel" placeholder="Nº Telemóvel" required
+                            class="w-full px-5 py-4 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 focus:border-beedo-blue focus:ring-1 focus:ring-beedo-blue outline-none transition-all font-medium">
+                        <button
+                            class="w-full bg-beedo-orange text-white font-bold py-4 rounded-xl hover:-translate-y-0.5 transition-transform shadow-md text-lg mt-2">
+                            Pedir Contacto
+                        </button>
+                        <div id="success-notif"
+                            class="hidden text-green-600 bg-green-50 border border-green-200 px-4 py-3 rounded-lg text-sm font-bold text-center mt-4">
+                            Pedido recebido. Falamos em breve!
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Right: Calendar embed -->
+                <div class="lg:col-span-3 bg-gray-50 p-6 md:p-10 flex flex-col justify-center">
+                    <h4 class="font-bold text-beedo-dark text-lg mb-2 text-center">Prefere agendar diretamente online?
+                    </h4>
+                    <p class="text-sm font-medium text-gray-500 text-center mb-6">Escolha o melhor slot no calendário
+                        abaixo.</p>
+
+                    <div
+                        class="h-full w-full rounded-2xl overflow-hidden bg-white border border-gray-200 min-h-[500px] shadow-sm">
+                        <!-- Cal.com embed -->
+                        <iframe src="https://cal.com/beedo-insurance/reuniao-inicial?embed=true"
+                            style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chatbot Widget (Matching new style) -->
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <!-- Toggle Btn -->
+        <button id="chat-toggle"
+            class="w-14 h-14 bg-beedo-blue text-white rounded-full shadow-lg hover:-translate-y-1 transition-transform outline-none flex items-center justify-center">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+
+        <!-- Window -->
+        <div id="chat-window"
+            class="absolute bottom-16 right-0 w-[340px] h-[500px] bg-white rounded-2xl shadow-float flex-col overflow-hidden border border-gray-100 origin-bottom-right">
+            <div class="bg-white border-b border-gray-100 p-4 flex justify-between items-center z-10 relative">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="relative w-8 h-8 bg-beedo-orange-light text-beedo-orange rounded-full flex items-center justify-center">
+                        <div
+                            class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full">
+                        </div>
+                        <i class="fas fa-robot text-xs"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm text-beedo-dark leading-none">A.I. Concierge</p>
+                    </div>
+                </div>
+                <button id="chat-close" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="chat-msgs" class="flex-grow p-4 overflow-y-auto flex flex-col gap-3 bg-gray-50 text-sm">
+                <!-- initial msg -->
+                <div
+                    class="bot p-3 rounded-2xl rounded-tl-sm bg-white border border-gray-100 font-medium text-gray-600 shadow-sm">
+                    Olá! Sou a assistente inteligente da Bee.Do. Como posso esclarecer as suas dúvidas sobre o modelo de
+                    parceria?
+                </div>
+            </div>
+
+            <div class="p-3 bg-white border-t border-gray-100">
+                <div class="relative flex items-center">
+                    <input type="text" id="chat-in" placeholder="Escreva aqui..."
+                        class="w-full pl-4 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-full outline-none focus:border-beedo-blue font-medium text-sm transition-colors">
+                    <button id="chat-send"
+                        class="absolute right-1 w-8 h-8 bg-beedo-blue text-white rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-paper-plane text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white py-16 px-6 md:px-12 border-t border-gray-100 mt-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 justify-between mb-16">
+                <!-- Brand col -->
+                <div class="max-w-sm">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="/logos/logo-color.png" alt="BEE.DO Logo" class="h-8 w-auto">
+                    </div>
+                    <p class="text-gray-500 text-sm font-medium leading-relaxed mb-6">
+                        O futuro constrói-se em parceria. O ecossistema inteligente de mediação de seguros.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-beedo-orange hover:border-beedo-orange transition-colors">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links col -->
+                <div>
+                    <h4 class="font-bold text-beedo-dark mb-6">Links Úteis</h4>
+                    <ul class="space-y-4 text-sm font-medium text-gray-500">
+                        <li><a href="#vantagens" class="hover:text-beedo-orange transition-colors">Vantagens</a></li>
+                        <li><a href="#simulador" class="hover:text-beedo-orange transition-colors">Simulador</a></li>
+                        <li><a href="#faq" class="hover:text-beedo-orange transition-colors">Perguntas Frequentes</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact col -->
+                <div>
+                    <h4 class="font-bold text-beedo-dark mb-6">Contactos</h4>
+                    <ul class="space-y-4 text-sm font-medium text-gray-500">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-beedo-orange"></i>
+                            <a href="mailto:geral@beedo.pt"
+                                class="hover:text-beedo-orange transition-colors">geral@beedo.pt</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div
+                class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-400">
+                <p>Bee.Do 2024 - Todos os direitos reservados.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-beedo-dark transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-beedo-dark transition-colors">Informação Legal</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Simulator calc
+        const pR = document.getElementById('portfolioRange');
+        const sR = document.getElementById('splitRange');
+        const pV = document.getElementById('portfolioValue');
+        const sV = document.getElementById('splitValue');
+        const sRes = document.getElementById('savingsResult');
+
+        function calc() {
+            const p = parseInt(pR.value);
+            const s = parseInt(sR.value);
+
+            pV.innerText = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p);
+            sV.innerText = s + ' %';
+
+            const revenue = p * 0.12;
+            const saved = revenue * (s / 100);
+
+            sRes.innerText = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(saved);
+        }
+        pR.addEventListener('input', calc);
+        sR.addEventListener('input', calc);
+        calc();
+
+        // Chatbot UI 
+        const tBtn = document.getElementById('chat-toggle');
+        const cw = document.getElementById('chat-window');
+        const cbClose = document.getElementById('chat-close');
+
+        tBtn.onclick = () => cw.classList.toggle('open');
+        cbClose.onclick = () => cw.classList.remove('open');
+
+        const chatInput = document.getElementById('chat-in');
+        const chatSend = document.getElementById('chat-send');
+        const chatMsgs = document.getElementById('chat-msgs');
+
+        function appendMsg(txt, type) {
+            const m = document.createElement('div');
+            m.className = `p-3 rounded-2xl shadow-sm border border-gray-100 font-medium text-[13px] leading-relaxed w-[85%] mb-2 ${type === 'user' ? 'bg-beedo-blue text-white self-end rounded-tr-sm self-end block ml-auto' : 'bg-white text-gray-700 self-start rounded-tl-sm block mr-auto'}`;
+            m.innerText = txt;
+            chatMsgs.appendChild(m);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        }
+
+        chatSend.onclick = () => {
+            const v = chatInput.value.trim();
+            if (!v) return;
+            appendMsg(v, 'user');
+            chatInput.value = '';
+
+            setTimeout(() => {
+                appendMsg("Obrigado pela sua questão. Deixe o seu número ou email no formulário acima para lhe darmos uma resposta mais detalhada.", 'bot');
+            }, 800);
+        }
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') chatSend.click(); });
+    </script>
+</body>
+
+</html>

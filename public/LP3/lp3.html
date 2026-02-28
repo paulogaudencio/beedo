@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEE.DO - 100% Comissões para Mediadores</title>
+
+  <!-- React and Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @keyframes bounce-slow {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(-50%) translateX(0);
+      }
+
+      50% {
+        transform: translateY(-50%) translateX(-10px);
+      }
+    }
+
+    .animate-bounce-slow {
+      animation: bounce-slow 4s ease-in-out infinite;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shadow-3xl {
+      box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilização personalizada do slider */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #2563eb;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+      border: 3px solid white;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      background: #e2e8f0;
+      height: 8px;
+      border-radius: 4px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /**
+     * Componente de Ícone Definitivo e Robusto
+     * Utiliza a API nativa 'createIcons' da Lucide, evitando qualquer erro de mapeamento manual.
+     */
+    const Icon = ({ name, size = 24, className = "" }) => {
+      const iconRef = useRef(null);
+
+      useEffect(() => {
+        if (window.lucide && iconRef.current) {
+          // Injeta a tag nativa da lucide e limpa SVG anterior
+          iconRef.current.innerHTML = `<i data-lucide="${name}"></i>`;
+
+          // Diz à biblioteca nativa para processar apenas este contentor
+          window.lucide.createIcons({
+            root: iconRef.current,
+            attrs: {
+              width: size,
+              height: size,
+              class: className
+            }
+          });
+        }
+      }, [name, size, className]);
+
+      return (
+        <span
+          ref={iconRef}
+          className="inline-flex items-center justify-center"
+          style={{ width: size, height: size }}
+        />
+      );
+    };
+
+    const App = () => {
+      const [premium, setPremium] = useState(100000);
+      const [avgComm, setAvgComm] = useState(18);
+      const [retention, setRetention] = useState(20);
+
+      const grossCommission = premium * (avgComm / 100);
+      const traditionalNet = grossCommission * (1 - retention / 100);
+      const beedoNet = grossCommission;
+      const annualLoss = beedoNet - traditionalNet;
+
+      const formatCurrency = (value) => {
+        return new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
+      };
+
+      return (
+        <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-orange-100 selection:text-orange-600 overflow-x-hidden">
+          {/* Background Decor */}
+          <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50 rounded-full blur-[120px] opacity-60"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-orange-50 rounded-full blur-[100px] opacity-40"></div>
+          </div>
+
+          <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-20">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                    <span className="text-white font-bold text-xl">B</span>
+                  </div>
+                  <span className="text-2xl font-black tracking-tighter text-slate-900">BEE.DO</span>
+                </div>
+                <div className="hidden md:flex items-center gap-10">
+                  <a href="#problema" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">O Problema</a>
+                  <a href="#simulador" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Simulador</a>
+                  <a href="#beneficios" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Benefícios</a>
+                  <a href="#contacto" className="bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-full text-sm font-bold transition-all transform hover:-translate-y-0.5 shadow-xl shadow-orange-200">
+                    Agendar Conversa
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          {/* HERO */}
+          <section className="relative pt-12 pb-32 z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-20">
+              <div className="flex-1 text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold mb-8 uppercase tracking-widest">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                  </span>
+                  Recrutamento Aberto 2025
+                </div>
+                <h1 className="text-5xl lg:text-8xl font-black text-slate-950 leading-[1.05] mb-8 tracking-tight">
+                  Fique com <span className="text-blue-600">100%</span> das suas <span className="relative inline-block">
+                    comissões
+                    <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 9C118.957 4.46788 239.436 3.26419 355 9" stroke="#F97316" strokeWidth="6" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </h1>
+                <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                  Junte-se à elite da mediação de seguros em Portugal. Autonomia total, ferramentas de topo e o rendimento que você realmente merece.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center gap-5 justify-center lg:justify-start">
+                  <a href="#simulador" className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-2xl shadow-blue-200 group">
+                    Calcular ganhos <Icon name="arrow-right" size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                  <a href="#como-funciona" className="w-full sm:w-auto px-10 py-5 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold text-lg transition-all hover:bg-slate-50 flex items-center justify-center gap-2">
+                    Como funciona? <Icon name="chevron-right" size={20} />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex-1 relative">
+                <div className="relative z-10 w-full max-w-[540px] mx-auto group">
+                  <div className="aspect-[4/5] rounded-[48px] overflow-hidden shadow-3xl border-8 border-white relative bg-slate-200">
+                    <img
+                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop"
+                      alt="Mediador Moderno"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
+                  </div>
+
+                  <div className="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 animate-bounce-slow">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-green-100 rounded-lg text-green-600">
+                        <Icon name="trending-up" size={24} />
+                      </div>
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Crescimento</span>
+                    </div>
+                    <p className="text-3xl font-black text-slate-900">+100%</p>
+                    <p className="text-xs font-semibold text-slate-500">Rentabilidade Líquida</p>
+                  </div>
+
+                  <div className="absolute top-1/2 -left-12 bg-blue-600 text-white p-6 rounded-3xl shadow-2xl shadow-blue-300 transform -translate-y-1/2 animate-float">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Icon name="users" size={24} className="text-blue-200" />
+                      <span className="text-xs font-bold text-blue-100 uppercase tracking-wider">Apoio</span>
+                    </div>
+                    <p className="text-xl font-bold leading-tight">Apoio Técnico<br />Especializado</p>
+                  </div>
+
+                  <div className="absolute -bottom-6 right-12 bg-slate-900 text-white p-6 rounded-3xl shadow-2xl flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center shrink-0">
+                      <Icon name="shield-check" size={28} />
+                    </div>
+                    <div>
+                      <p className="text-lg font-bold">100% Autónomo</p>
+                      <p className="text-xs text-slate-400">Liberdade total de gestão</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-100/50 rounded-full blur-[100px] -z-10"></div>
+              </div>
+            </div>
+          </section>
+
+          {/* PROVA SOCIAL */}
+          <div className="relative z-20 -mt-10 mb-24 max-w-6xl mx-auto px-4">
+            <div className="bg-white rounded-[32px] shadow-2xl shadow-slate-200/50 border border-slate-100 p-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { t: "Sem exclusividade", d: "Liberdade de escolha" },
+                { t: "Custo zero entrada", d: "Risco inexistente" },
+                { t: "Saída livre", d: "Sem letras pequenas" },
+                { t: "+30 anos", d: "Solidez comprovada" }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center text-center">
+                  <Icon name="check-circle" size={24} className="text-orange-500 mb-2" />
+                  <p className="font-bold text-slate-900 text-sm">{item.t}</p>
+                  <p className="text-xs text-slate-400 font-medium">{item.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* O PROBLEMA */}
+          <section id="problema" className="py-24 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-2xl mb-16">
+                <h2 className="text-4xl lg:text-5xl font-black text-slate-950 mb-6">Trabalhar sozinho está a <br /><span className="text-red-500">custar-lhe caro.</span></h2>
+                <p className="text-xl text-slate-600">O mercado mudou e as velhas redes não acompanharam.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { title: "Comissões a encolher", desc: "Trabalha mais, ganha menos.", icon: "trending-down", color: "text-red-500" },
+                  { title: "Pouca oferta", desc: "Sem acesso a produtos exclusivos ou condições competitivas.", icon: "globe", color: "text-blue-600" },
+                  { title: "Sem ferramentas", desc: "Gestão manual. Perde tempo e clientes para a concorrência digital.", icon: "monitor", color: "text-blue-500" },
+                  { title: "Isolamento", desc: "Sem equipa de suporte ou poder negocial junto das seguradoras.", icon: "users", color: "text-orange-600" },
+                  { title: "Compliance", desc: "RGPD e ASF — cumprir sozinho é caro e complexo.", icon: "scale", color: "text-slate-700" },
+                  { title: "Contratos que prendem", desc: "Cláusulas de exclusividade que limitam a sua liberdade.", icon: "lock", color: "text-slate-900" }
+                ].map((card, i) => (
+                  <div key={i} className="bg-white p-10 rounded-[32px] border border-slate-100 hover:border-blue-100 transition-all group">
+                    <div className={`w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-blue-50 transition-all ${card.color}`}>
+                      <Icon name={card.icon} size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-950 mb-4">{card.title}</h3>
+                    <p className="text-slate-500 text-sm">{card.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* SIMULADOR */}
+          <section id="simulador" className="py-24">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-slate-950 rounded-[64px] p-8 lg:p-20 relative overflow-hidden shadow-3xl">
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+                <div className="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+                  <div>
+                    <h2 className="text-4xl lg:text-5xl font-black text-white mb-8">Quanto está a deixar <br /><span className="text-orange-500">em cima da mesa?</span></h2>
+                    <p className="text-xl text-slate-400 mb-10">Compare o que ganha hoje numa rede tradicional vs. o que ganharia na <strong>BEE.DO</strong>.</p>
+                  </div>
+
+                  <div className="bg-white p-8 lg:p-12 rounded-[48px] shadow-2xl text-slate-900">
+                    <div className="space-y-10">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-end">
+                          <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Carteira Anual (Prémios)</label>
+                          <span className="text-2xl font-black">{formatCurrency(premium)}</span>
+                        </div>
+                        <input
+                          type="range" min="10000" max="1000000" step="10000"
+                          value={premium} onChange={(e) => setPremium(Number(e.target.value))}
+                          className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-8">
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Comissão Média %</label>
+                          <input
+                            type="number" value={avgComm} onChange={(e) => setAvgComm(Number(e.target.value))}
+                            className="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 font-bold"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Retenção Rede %</label>
+                          <input
+                            type="number" value={retention} onChange={(e) => setRetention(Number(e.target.value))}
+                            className="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 font-bold"
+                          />
+                        </div>
+                      </div>
+                      <div className="pt-8 border-t border-slate-100 text-center">
+                        <p className="text-orange-500 font-black text-sm uppercase mb-2 tracking-widest">Está a perder por ano:</p>
+                        <p className="text-5xl font-black text-slate-950">+ {formatCurrency(annualLoss)}</p>
+                      </div>
+                      <button className="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3">
+                        Quero Ficar com 100% <Icon name="arrow-right" size={22} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* BENEFÍCIOS */}
+          <section id="beneficios" className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-20">
+                <h2 className="text-4xl lg:text-5xl font-black text-slate-950">Tudo o que precisa.</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
+                {[
+                  { t: "100% Comissões + Over's", i: "award", d: "Recebe a totalidade das remunerações negociadas." },
+                  { t: "Autonomia Total", i: "zap", d: "Não é franchising. Mantém a sua marca e independência." },
+                  { t: "Acesso ao Mercado", i: "globe", d: "Seguradoras nacionais e internacionais e condições de força." },
+                  { t: "Portal do Parceiro", i: "smartphone", d: "Gestão em tempo real. Powered by LLUNI." },
+                  { t: "Formação Contínua", i: "book-open", d: "Acesso a especialistas e formação obrigatória." },
+                  { t: "Jurídico e Compliance", i: "shield-check", d: "Serviços jurídicos e conformidade ASF incluídos." }
+                ].map((b, i) => (
+                  <div key={i} className="flex flex-col">
+                    <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                      <Icon name={b.i} size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-950 mb-3">{b.t}</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">{b.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* TECNOLOGIA */}
+          <section className="py-24 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col lg:flex-row items-center gap-24">
+                <div className="flex-1">
+                  <h2 className="text-4xl lg:text-5xl font-black text-slate-950 mb-8 leading-tight">O seu negócio, na palma da mão.</h2>
+                  <div className="grid sm:grid-cols-2 gap-8">
+                    {[
+                      { t: "Dashboard Real-time", i: "pie-chart" },
+                      { t: "Gestão de Apólices", i: "search" },
+                      { t: "PWA Mobile", i: "smartphone" },
+                      { t: "Personalização Total", i: "settings" },
+                      { t: "Sinistros Integrados", i: "alert-circle" },
+                      { t: "Pedidos Interativos", i: "message-square" }
+                    ].map((f, i) => (
+                      <div key={i} className="flex gap-4 group">
+                        <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shrink-0 text-blue-600">
+                          <Icon name={f.i} size={20} />
+                        </div>
+                        <h4 className="font-bold text-slate-900 self-center">{f.t}</h4>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-12 flex items-center gap-3 py-3 px-6 bg-white rounded-2xl border border-slate-200 w-fit">
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Powered by</span>
+                    <span className="text-xl font-black text-blue-600 tracking-tighter">LLUNI</span>
+                  </div>
+                </div>
+                <div className="flex-1 bg-white rounded-[40px] shadow-3xl p-4 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+                    className="w-full rounded-[32px] opacity-80"
+                    alt="Mockup de Tecnologia"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* COMO FUNCIONA */}
+          <section id="como-funciona" className="py-24 bg-white text-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-4xl font-black text-slate-950 mb-16">Junte-se em 4 passos simples</h2>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
+                {[
+                  { n: "01", t: "Fale connosco", d: "Conversa informal para conhecer o seu negócio." },
+                  { n: "02", t: "Proposta", d: "Condições calculadas em função da sua carteira." },
+                  { n: "03", t: "Integração", d: "Setup do Portal e formação da equipa." },
+                  { n: "04", t: "Ganhe mais", d: "Acesso imediato a 100% das comissões." }
+                ].map((step, i) => (
+                  <div key={i} className="relative pt-8">
+                    <div className="text-8xl font-black text-slate-50 absolute -top-8 -left-4 -z-0">{step.n}</div>
+                    <div className="relative z-10">
+                      <h3 className="text-xl font-bold text-slate-950 mb-3">{step.t}</h3>
+                      <p className="text-slate-500 text-sm">{step.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* GARANTIAS */}
+          <section className="py-24 bg-slate-950 text-white text-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-12">
+              <div className="bg-white/5 p-10 rounded-[40px] border border-white/10">
+                <Icon name="zap" size={32} className="text-blue-400 mb-8 mx-auto" />
+                <h4 className="text-2xl font-black mb-4">Sem lock-in</h4>
+                <p className="text-slate-400 text-sm">Pode sair a qualquer momento, sem penalizações.</p>
+              </div>
+              <div className="bg-white/5 p-10 rounded-[40px] border border-white/10">
+                <Icon name="shield-check" size={32} className="text-orange-400 mb-8 mx-auto" />
+                <h4 className="text-2xl font-black mb-4">Supervisionado ASF</h4>
+                <p className="text-slate-400 text-sm">Atividade regulada e em total conformidade.</p>
+              </div>
+              <div className="bg-white/5 p-10 rounded-[40px] border border-white/10">
+                <Icon name="users" size={32} className="text-white mb-8 mx-auto" />
+                <h4 className="text-2xl font-black mb-4">+30 anos</h4>
+                <p className="text-slate-400 text-sm">Bull, Catarino e NewCall Seguros unidas.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA */}
+          <section id="contacto" className="py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[64px] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-3xl">
+                <h2 className="text-4xl lg:text-7xl font-black mb-8 relative z-10">Pronto para ficar com 100%?</h2>
+                <button className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-6 rounded-3xl text-2xl font-black transition-all transform hover:scale-105 shadow-3xl flex items-center gap-4 mx-auto relative z-10">
+                  Agendar conversa gratuita <Icon name="arrow-right" />
+                </button>
+                <div className="mt-12 flex items-center justify-center gap-3 relative z-10">
+                  <Icon name="phone" size={18} />
+                  <span className="font-bold text-lg text-blue-50">+351 210 XXX XXX</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer className="bg-white py-12 border-t border-slate-100 text-center">
+            <p className="text-slate-400 text-xs">© 2025 BEE.DO - Registado na ASF.</p>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+
+</html>

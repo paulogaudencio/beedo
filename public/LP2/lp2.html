@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bee.Do - Rede de Mediadores</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot.css">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F59E0B", // Vibrant Orange
+                        "primary-dark": "#D97706",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#0F172A", // Slate 900 for dark mode fallback
+                        "background-alt-light": "#F4F9FF", // Soft Light Blue
+                        "background-alt-dark": "#1E293B", // Slate 800 for dark mode alt
+                        "navy": {
+                            900: "#0F172A", // Deep Navy
+                            800: "#1E293B",
+                            700: "#334155",
+                            600: "#475569",
+                        },
+                        "soft-blue": "#E0F2FE", // Sky 100
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 4px 20px -2px rgba(245, 158, 11, 0.3)',
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-navy-900 dark:text-gray-100 transition-colors duration-300">
+    <nav
+        class="fixed w-full z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer">
+                    <img src="/logos/logo-color.png" alt="BEE.DO Logo" class="h-8 w-auto">
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a class="text-sm font-medium text-navy-600 hover:text-navy-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                        href="#">O Problema</a>
+                    <a class="text-sm font-medium text-navy-600 hover:text-navy-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                        href="#">Vantagens</a>
+                    <a class="text-sm font-medium text-navy-600 hover:text-navy-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                        href="#">Tecnologia</a>
+                    <button
+                        class="bg-primary hover:bg-primary-dark text-white text-sm font-semibold py-2.5 px-6 rounded-full transition-all shadow-glow hover:shadow-lg transform hover:-translate-y-0.5">
+                        Simulador →
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-navy-900 dark:text-white hover:text-primary transition-colors">
+                        <span class="material-icons-round text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="relative min-h-[80vh] flex items-center pt-32 pb-20 overflow-hidden bg-navy-900">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="/LP2/hero-lp2.jpg" alt="Professional Office" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/40 to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="max-w-2xl space-y-8 text-left">
+                <div
+                    class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md text-primary text-xs font-bold tracking-wide uppercase border border-primary/30">
+                    <span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+                    Recrutamento Aberto 2025
+                </div>
+
+                <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+                    Retenha <span class="text-primary">100%</span> <br>das suas comissões.
+                </h1>
+
+                <p class="text-xl text-gray-200 max-w-xl leading-relaxed font-medium">
+                    Junte-se à rede de mediadores de seguros que está a mudar as regras em Portugal. Mantenha a sua
+                    autonomia, ganhe ferramentas profissionais e aumente rendimentos — sem perder a identidade.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button
+                        class="bg-primary hover:bg-primary-dark text-white text-lg font-bold py-4 px-10 rounded-xl transition-all shadow-glow hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        Simular ganhos agora <span class="material-icons-round text-xl">trending_up</span>
+                    </button>
+                    <button
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white text-lg font-bold py-4 px-10 rounded-xl transition-all">
+                        Como funciona?
+                    </button>
+                </div>
+
+                <div class="pt-10 flex flex-wrap gap-x-8 gap-y-4 text-sm font-bold text-gray-300">
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons-round text-primary">check_circle</span>
+                        SEM EXCLUSIVIDADE
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="material-icons-round text-primary">check_circle</span>
+                        SAÍDA LIVRE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-alt-light dark:bg-background-alt-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16 max-w-2xl">
+                <span class="text-primary font-bold tracking-wider text-sm uppercase">O Cenário Atual</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-navy-900 dark:text-white leading-tight">
+                    Se trabalha sozinho, <br class="hidden md:block" />
+                    <span class="text-navy-500 dark:text-gray-400">está a perder dinheiro.</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-red-50 dark:bg-red-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-red-500">pie_chart</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Comissões a encolher</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        As redes tradicionais ficam com uma fatia cada vez maior das suas comissões. Trabalha mais,
+                        ganha menos.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-blue-500">inventory_2</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Pouca oferta</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Limitado a poucas seguradoras, sem acesso a produtos exclusivos ou condições competitivas para
+                        os seus clientes.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-orange-500">devices_off</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Sem ferramentas digitais</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Gestão manual, sem portal de cliente, sem CRM. Perde tempo e clientes para a concorrência
+                        digital.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-purple-500">person_off</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Isolamento total</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Sem equipa de suporte, sem formação contínua, sem poder negocial junto das seguradoras
+                        principais.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-indigo-500">gavel</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Compliance exaustivo</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Regulação crescente, RGPD, ASF — cumprir sozinho todas as normas é caro e complexo.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-navy-800 p-8 rounded-2xl shadow-soft hover:shadow-lg transition-shadow border border-blue-50 dark:border-navy-700">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-green-50 dark:bg-green-900/20 flex items-center justify-center mb-6">
+                        <span class="material-icons-round text-green-500">lock</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-3">Contratos que prendem</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Franchises com cláusulas de exclusividade, taxas de saída e obrigações que limitam a sua
+                        liberdade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-primary font-bold tracking-wider text-sm uppercase">O Seu Lucro Real</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-navy-900 dark:text-white">
+                    Quanto está a deixar <br /> em cima da mesa?
+                </h2>
+            </div>
+            <div class="bg-navy-900 dark:bg-navy-950 rounded-3xl p-8 lg:p-12 shadow-2xl relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 rounded-full filter blur-3xl -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Carteira
+                                Anual de Prémios</label>
+                            <div class="relative">
+                                <input
+                                    class="w-full bg-navy-800 text-white text-xl font-bold border border-navy-700 rounded-lg py-4 pl-4 pr-12 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                    type="number" value="200000" />
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">€</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Comissão
+                                Média (%)</label>
+                            <div class="relative">
+                                <input
+                                    class="w-full bg-navy-800 text-primary text-xl font-bold border border-navy-700 rounded-lg py-4 pl-4 pr-12 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                                    type="number" value="18" />
+                                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">%</span>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <div class="flex justify-between text-xs font-bold text-gray-400 mb-2">
+                                <span>% RETIDA PELA REDE ATUAL</span>
+                                <span class="text-white">25%</span>
+                            </div>
+                            <input
+                                class="w-full h-2 bg-navy-800 rounded-lg appearance-none cursor-pointer accent-primary"
+                                max="50" min="0" type="range" value="25" />
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-between space-y-6">
+                        <div class="bg-navy-800/50 rounded-xl p-6 border border-navy-700 text-center">
+                            <p class="text-xs font-bold text-red-400 uppercase mb-1">Perca Acumulada (Hoje)</p>
+                            <p class="text-3xl font-extrabold text-white">€27 000</p>
+                            <p class="text-[10px] text-gray-500 mt-2">Cálculo baseado em retenção de 25% pela sua rede
+                            </p>
+                        </div>
+                        <div
+                            class="bg-primary rounded-2xl p-6 text-center shadow-lg transform scale-105 border-4 border-navy-800">
+                            <p class="text-xs font-bold text-white/80 uppercase mb-2">Com a Bee.Do você receberia</p>
+                            <p class="text-4xl md:text-5xl font-extrabold text-white mb-4">€36 000</p>
+                            <div class="flex items-center justify-center gap-2">
+                                <span class="bg-navy-900 text-white text-[10px] font-bold py-1 px-3 rounded-full">+€9000
+                                    EXTRA</span>
+                                <span class="text-xs font-medium text-white/90">por ano no seu bolso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-alt-light dark:bg-background-alt-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 dark:text-white">
+                    Tudo o que precisa, <br />
+                    <span class="text-navy-400 dark:text-gray-500 line-through decoration-primary decoration-4">nada que
+                        não queira.</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8">
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">paid</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">100% Comissões + Over's</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Recebe a totalidade das remunerações negociadas com as seguradoras, incluindo bónus contratuais.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">verified</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">Autonomia Total</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Não somos um franchising. Mantém a sua marca, a sua estrutura e total independência comercial.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">language</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">Acesso ao Mercado</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Seguradoras mundiais, condições exclusivas e o poder negocial de uma rede consolidada.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">laptop_mac</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">Portal Digital</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Gestão de carteira em tempo real, CRM dedicado e multi-tarificadores integrados com a sua marca.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">school</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">Formação Contínua</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Formação obrigatória, eventos anuais e mentoria de especialistas para alavancar vendas.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start">
+                    <div
+                        class="w-12 h-12 rounded-lg bg-navy-900 dark:bg-white flex items-center justify-center mb-4 shadow-lg">
+                        <span class="material-icons-round text-primary dark:text-navy-900 text-2xl">gavel</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 dark:text-white mb-2">Jurídico &amp; Compliance</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400 leading-relaxed">
+                        Nós garantimos a conformidade com ASF e RGPD. Foque-se no negócio, nós cuidamos das regras.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 order-2 lg:order-1">
+                    <div>
+                        <span class="text-primary font-bold tracking-wider text-sm uppercase">Insurtech Hub</span>
+                        <h2
+                            class="mt-2 text-4xl lg:text-5xl font-extrabold text-navy-900 dark:text-white leading-tight">
+                            O seu negócio,<br /> na palma da mão.
+                        </h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="bg-background-alt-light dark:bg-navy-800 p-4 rounded-xl border border-blue-50 dark:border-navy-700 flex items-start gap-4">
+                            <div
+                                class="mt-1 w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-white">
+                                <span class="material-icons-round text-sm">speed</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 dark:text-white">Dashboard em tempo real</h4>
+                                <p class="text-sm text-navy-600 dark:text-gray-400">Visão completa com KPIs e alertas
+                                    atualizados ao segundo.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-background-alt-light dark:bg-navy-800 p-4 rounded-xl border border-blue-50 dark:border-navy-700 flex items-start gap-4">
+                            <div
+                                class="mt-1 w-8 h-8 rounded-full bg-navy-900 dark:bg-navy-700 flex items-center justify-center flex-shrink-0 text-white">
+                                <span class="material-icons-round text-sm">smartphone</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-navy-900 dark:text-white">PWA Nativo</h4>
+                                <p class="text-sm text-navy-600 dark:text-gray-400">Funciona em qualquer smartphone como
+                                    uma App original.</p>
+                            </div>
+                        </div>
+                        <div class="bg-primary p-4 rounded-xl shadow-lg flex items-start gap-4 text-white">
+                            <div
+                                class="mt-1 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                <span class="material-icons-round text-sm">palette</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Personalização "White-label"</h4>
+                                <p class="text-sm text-white/90">O portal assume o seu logótipo e as suas cores.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="order-1 lg:order-2 bg-white dark:bg-navy-800 rounded-[2rem] p-6 shadow-2xl border-4 border-background-alt-light dark:border-navy-700">
+                    <div
+                        class="flex items-center justify-between mb-6 border-b border-gray-100 dark:border-navy-700 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-lg text-navy-900 dark:text-white">BEE.DO <span
+                                    class="text-gray-400 font-normal">Portal</span></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-8 h-8 rounded-full bg-blue-50 dark:bg-navy-700 flex items-center justify-center text-blue-500">
+                                <span class="material-icons-round text-sm">notifications</span>
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-navy-900 flex items-center justify-center text-white text-xs">
+                                JD </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-background-alt-light dark:bg-navy-900 p-3 rounded-xl">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold">Carteira</p>
+                            <p class="text-lg font-bold text-navy-900 dark:text-white">€487k</p>
+                        </div>
+                        <div class="bg-background-alt-light dark:bg-navy-900 p-3 rounded-xl">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold">Clientes</p>
+                            <p class="text-lg font-bold text-navy-900 dark:text-white">1247</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-xl">
+                            <p class="text-[10px] text-green-600 dark:text-green-400 uppercase font-bold">Retenção</p>
+                            <p class="text-lg font-bold text-green-700 dark:text-green-400">94%</p>
+                        </div>
+                    </div>
+                    <div class="h-40 flex items-end justify-between gap-2 px-2 pb-2">
+                        <div class="w-full bg-orange-100 dark:bg-orange-900/20 rounded-t-lg h-[40%]"></div>
+                        <div class="w-full bg-blue-400 rounded-t-lg h-[65%]"></div>
+                        <div class="w-full bg-primary rounded-t-lg h-[85%]"></div>
+                        <div class="w-full bg-blue-400 rounded-t-lg h-[55%]"></div>
+                        <div class="w-full bg-primary rounded-t-lg h-[90%]"></div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <div class="bg-navy-900 rounded-full px-3 py-1 flex items-center gap-1">
+                            <span class="material-icons-round text-primary text-xs">bolt</span>
+                            <span class="text-[10px] text-white">Powered by LLUNI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-alt-light dark:bg-background-alt-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-16">
+                <span class="text-primary font-bold tracking-wider text-sm uppercase">O Caminho</span>
+                <h2 class="mt-2 text-3xl md:text-4xl font-bold text-navy-900 dark:text-white">
+                    Junte-se em <span class="text-gray-400">4 passos.</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative">
+                    <div
+                        class="w-16 h-16 rounded-full bg-navy-900 text-white text-xl font-bold flex items-center justify-center mx-auto mb-6 z-10 relative">
+                        1</div>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-navy-700 -z-0">
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">Fale connosco</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400">Conversa informal para conhecer o seu negócio.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-16 h-16 rounded-full bg-navy-900 text-white text-xl font-bold flex items-center justify-center mx-auto mb-6 z-10 relative">
+                        2</div>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-navy-700 -z-0">
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">Proposta</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400">Condições personalizadas para a sua carteira.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-16 h-16 rounded-full bg-navy-900 text-white text-xl font-bold flex items-center justify-center mx-auto mb-6 z-10 relative">
+                        3</div>
+                    <div class="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gray-200 dark:bg-navy-700 -z-0">
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">Integração</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400">Setup rápido do Portal do Parceiro.</p>
+                </div>
+                <div class="relative">
+                    <div
+                        class="w-16 h-16 rounded-full bg-navy-900 text-white text-xl font-bold flex items-center justify-center mx-auto mb-6 z-10 relative">
+                        4</div>
+                    <h3 class="text-lg font-bold text-navy-900 dark:text-white mb-2">Escale</h3>
+                    <p class="text-sm text-navy-600 dark:text-gray-400">100% das comissões desde o momento 0.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-navy-900 dark:bg-black pt-20 pb-12 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: radial-gradient(#F59E0B 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-8 mb-20 border-b border-white/10 pb-12">
+                <div class="text-center">
+                    <div class="inline-flex p-3 rounded-full bg-white/5 mb-4">
+                        <span class="material-icons-round text-white">lock</span>
+                    </div>
+                    <h4 class="text-white font-bold mb-1">Sem lock-in</h4>
+                    <p class="text-xs text-gray-400">Pode sair a qualquer momento.</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex p-3 rounded-full bg-white/5 mb-4">
+                        <span class="material-icons-round text-white">verified_user</span>
+                    </div>
+                    <h4 class="text-white font-bold mb-1">Supervisão ASF</h4>
+                    <p class="text-xs text-gray-400">Total conformidade regulatória.</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex p-3 rounded-full bg-white/5 mb-4">
+                        <span class="material-icons-round text-white">handshake</span>
+                    </div>
+                    <h4 class="text-white font-bold mb-1">Fundação Sólida</h4>
+                    <p class="text-xs text-gray-400">Bull Insurance Group.</p>
+                </div>
+            </div>
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+                    Pronto para ficar com <br />
+                    <span class="text-primary">100%</span> do que é seu?
+                </h2>
+                <p class="text-gray-300 mb-10 text-lg leading-relaxed">
+                    Agende uma conversa sem compromisso. Descubra quanto pode estar a perder — e como a BEE.DO pode
+                    mudar o seu futuro.
+                </p>
+                <div class="flex flex-col items-center gap-4">
+                    <button
+                        class="bg-primary hover:bg-primary-dark text-white text-lg font-bold py-4 px-10 rounded-full transition-all shadow-glow hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto">
+                        Agendar conversa gratuita →
+                    </button>
+                    <span class="text-xs text-gray-500 font-medium tracking-widest uppercase">Ou ligue +351 9XX XXX
+                        XXX</span>
+                </div>
+            </div>
+            <div class="mt-20 pt-8 border-t border-white/10 text-center text-xs text-gray-500">
+                <p>© 2025 BEE.DO INSURANCE GROUP — BULL INSURANCE • CATARINO SEGUROS • NEWCALL SEGUROS • <span
+                        class="text-primary">WWW.BEEDO.COM</span></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Chatbot HTML -->
+    <div id="beedo-chatbot-container">
+        <button id="beedo-chatbot-trigger">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+
+        <div id="beedo-chatbot-window">
+            <div id="beedo-chatbot-header">
+                <div class="brand">
+                    <div class="avatar">B</div>
+                    <span class="title">BEE.DO Assistant</span>
+                </div>
+                <button id="beedo-chatbot-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="beedo-chatbot-messages">
+                <!-- Messages will be injected here -->
+            </div>
+            <div id="beedo-chatbot-input-container">
+                <input type="text" id="beedo-chatbot-input" placeholder="Escreva a sua pergunta...">
+                <button id="beedo-chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

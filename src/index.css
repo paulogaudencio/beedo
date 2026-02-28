@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Plus Jakarta Sans", sans-serif;
+
+    --color-beedo-blue: #3B82F6;
+    --color-beedo-orange: #F97316;
+    --color-beedo-dark: #0F172A;
+    --color-beedo-slate: #475569;
+    --color-beedo-light: #F9FAFB;
+
+    --shadow-premium: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    --shadow-orange-glow: 0 10px 20px -5px rgba(249, 115, 22, 0.3);
+
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-float-delayed: float-delayed 7s ease-in-out infinite;
+    --animate-bounce-slow: bounce-slow 4s ease-in-out infinite;
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(0);
+        }
+
+        50% {
+            transform: translateY(-10px) rotate(1deg);
+        }
+    }
+
+    @keyframes float-delayed {
+
+        0%,
+        100% {
+            transform: translateY(0) rotate(0);
+        }
+
+        50% {
+            transform: translateY(-8px) rotate(-1deg);
+        }
+    }
+
+    @keyframes bounce-slow {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+}
+
+@layer base {
+    body {
+        @apply antialiased text-slate-900;
+    }
+}
+
+.glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/80 transition-all;
+}

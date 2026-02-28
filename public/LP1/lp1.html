@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEE.DO Insurance Group | Retenha 100% das suas comissões</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="chatbot.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            'beedo-blue': '#3B82F6',
+            'beedo-orange': '#F97316',
+            'beedo-dark': '#0F172A',
+            'beedo-slate': '#475569',
+            'beedo-light': '#F9FAFB',
+          },
+          boxShadow: {
+            'premium': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+            'orange-glow': '0 10px 20px -5px rgba(249, 115, 22, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #475569;
+    }
+
+    .hero-gradient {
+      background: radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(249, 115, 22, 0.05) 0%, transparent 40%);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
+    }
+
+    @keyframes float-delayed {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+      animation: float-delayed 7s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    /* Simulator Slider Customization */
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #F97316;
+      cursor: pointer;
+      margin-top: -10px;
+      box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 3px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 200px;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-beedo-slate antialiased selection:bg-beedo-orange selection:text-white">
+
+  <!-- Navbar -->
+  <nav id="navbar"
+    class="fixed top-0 w-full z-[100] transition-all duration-300 border-b border-transparent bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-2 group">
+        <img src="/logos/logo-color.png" alt="BEE.DO Logo" class="h-8 w-auto">
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#problema"
+          class="text-sm font-semibold text-beedo-slate hover:text-beedo-blue transition-colors">Vantagens</a>
+        <a href="#simulador"
+          class="text-sm font-semibold text-beedo-slate hover:text-beedo-blue transition-colors">Simulador</a>
+        <a href="#perguntas"
+          class="text-sm font-semibold text-beedo-slate hover:text-beedo-blue transition-colors">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="#contacto"
+          class="hidden sm:block bg-beedo-orange text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-orange-glow hover:-translate-y-0.5 transition-all">
+          Quero ser Parceiro
+        </a>
+        <button class="md:hidden text-beedo-dark text-xl"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 overflow-hidden hero-gradient">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal active">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-beedo-blue/10 text-beedo-blue text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 bg-beedo-blue rounded-full animate-pulse"></span>
+          Recrutamento aberto 2025
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold text-beedo-dark leading-[1.1] mb-6 tracking-tight">
+          Retenha <span class="text-beedo-orange italic">100%</span> <br>das suas comissões.
+        </h1>
+        <p class="text-lg text-beedo-slate font-medium mb-10 max-w-xl leading-relaxed">
+          Junte-se à rede de mediadores de seguros que está a mudar as regras em Portugal.
+          Aumente rendimentos sem perder a sua identidade.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+          <a href="#contacto"
+            class="px-10 py-4 bg-beedo-orange text-white rounded-full text-base font-bold shadow-orange-glow hover:-translate-y-1 transition-all text-center">
+            Aderir à equipa
+          </a>
+          <a href="#simulador"
+            class="px-10 py-4 bg-white text-beedo-dark border border-slate-200 rounded-full text-base font-bold hover:bg-slate-50 transition-all text-center">
+            Calcular Ganhos
+          </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="flex items-center gap-6 text-xs font-bold text-slate-400">
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check text-beedo-blue"></i> Registo ASF
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check text-beedo-blue"></i> +120 Parceiros
+          </div>
+        </div>
+      </div>
+
+      <div class="relative reveal active lg:pl-12">
+        <!-- Hero Image Container -->
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+          <img src="hero-person.png" alt="Mediador de Seguros Bee.Do"
+            class="w-full aspect-[4/5] object-cover bg-slate-100">
+          <div class="absolute inset-0 bg-gradient-to-t from-beedo-dark/10 to-transparent"></div>
+        </div>
+
+        <!-- Floating Stats Badge (Bottom Left) -->
+        <div
+          class="absolute -left-6 bottom-16 glass-card p-6 rounded-3xl shadow-premium border border-white/60 animate-float max-w-[240px]">
+          <div class="flex items-center gap-5">
+            <div
+              class="w-14 h-14 bg-beedo-orange/10 rounded-2xl flex items-center justify-center text-beedo-orange text-2xl">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-beedo-dark leading-none">100%</p>
+              <p class="text-[10px] font-black uppercase tracking-widest text-slate-500 mt-2">Comissões & Overs</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collaborative Badge (Top Right) -->
+        <div
+          class="absolute top-16 -right-6 glass-card px-5 py-4 rounded-2xl shadow-premium border border-white/60 flex items-center gap-4 animate-float-delayed">
+          <div class="flex -space-x-3">
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+              <div class="w-full h-full bg-slate-300"></div>
+            </div>
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300 overflow-hidden">
+              <div class="w-full h-full bg-slate-400"></div>
+            </div>
+            <div
+              class="w-10 h-10 rounded-full border-2 border-white bg-beedo-blue text-xs text-white flex items-center justify-center font-bold">
+              +120
+            </div>
+          </div>
+          <div>
+            <span class="block text-[11px] font-black uppercase tracking-widest text-slate-400">Rede de Parceiros</span>
+            <span class="text-sm font-bold text-beedo-dark">Colaboração Real</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Banner -->
+  <div class="bg-beedo-blue py-6 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <span class="text-white font-bold text-sm tracking-wide">Parcerias que criam valor</span>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-3">
+          <div class="flex items-center gap-2 text-[11px] font-bold text-white/90">
+            <i class="fas fa-check-circle text-beedo-orange"></i> SEM EXCLUSIVIDADE
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-bold text-white/90">
+            <i class="fas fa-check-circle text-beedo-orange"></i> CUSTO ENTRADA ZERO
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-bold text-white/90">
+            <i class="fas fa-check-circle text-beedo-orange"></i> SAÍDA LIVRE
+          </div>
+          <div class="flex items-center gap-2 text-[11px] font-bold text-white/90">
+            <i class="fas fa-check-circle text-beedo-orange"></i> +30 ANOS EXPERIÊNCIA
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pain Section -->
+  <section id="problema" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-16 reveal active">
+        <span class="text-beedo-orange font-bold uppercase tracking-widest text-xs mb-3 block">O Cenário Atual</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-beedo-dark tracking-tight leading-tight">Se trabalha sozinho,
+          <br><span class="text-slate-400">está a perder dinheiro.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-red-50 text-red-500 rounded-xl mb-6">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Comissões a encolher</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">As redes tradicionais ficam com uma fatia cada vez maior
+            das suacas comissões. Trabalha mais, ganha menos.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-blue-50 text-blue-500 rounded-xl mb-6">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Pouca oferta</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Limitado a poucas seguradoras, sem acesso a produtos
+            exclusivos ou condições competitivas para os seus clientes.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-orange-50 text-orange-500 rounded-xl mb-6">
+            <i class="fas fa-laptop-slash"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Sem ferramentas digitais</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Gestão manual, sem portal de cliente, sem CRM. Perde tempo
+            e clientes para a concorrência digital.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-purple-50 text-purple-500 rounded-xl mb-6">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Isolamento total</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Sem equipa de suporte, sem formação contínua, sem poder
+            negocial junto das seguradoras principais.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-indigo-50 text-indigo-500 rounded-xl mb-6">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Compliance exaustivo</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Regulação crescente, RGPD, ASF — cumprir sozinho todas as
+            normas é caro e complexo.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div
+          class="p-8 rounded-2xl bg-white border border-slate-100 shadow-premium hover:shadow-xl transition-all group reveal active">
+          <div class="w-12 h-12 flex items-center justify-center bg-emerald-50 text-emerald-500 rounded-xl mb-6">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Contratos que prendem</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Franchises com cláusulas de exclusividade, taxas de saída
+            e obrigações que limitam a sua liberdade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simulator Section -->
+  <section id="simulador" class="py-24 bg-beedo-light relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-2xl mx-auto text-center mb-16 reveal active">
+        <span class="text-beedo-blue font-bold uppercase tracking-widest text-xs mb-3 block">Simulador de Ganhos</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-beedo-dark tracking-tight">O seu lucro real: <br>Quanto está a
+          deixar no bolso da rede?</h2>
+      </div>
+
+      <div
+        class="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-[2rem] shadow-premium border border-slate-100 reveal active">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="space-y-10">
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <label class="text-sm font-bold text-beedo-dark">Carteira Anual de Prémios</label>
+                <span class="text-beedo-blue font-bold" id="simCarteiraValue">200.000€</span>
+              </div>
+              <input type="range" id="simCarteira" min="50000" max="1000000" step="10000" value="200000" class="w-full">
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <label class="text-sm font-bold text-beedo-dark">Comissão Média (%)</label>
+                <span class="text-beedo-blue font-bold" id="simComissaoValue">18%</span>
+              </div>
+              <input type="range" id="simComissao" min="5" max="30" step="1" value="18" class="w-full">
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-4">
+                <label class="text-sm font-bold text-beedo-dark">Retenção da Rede Atual (%)</label>
+                <span class="text-red-500 font-bold" id="simRetidaValue">20%</span>
+              </div>
+              <input type="range" id="simRetida" min="5" max="50" step="1" value="20" class="w-full">
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-8 text-center border border-slate-100 shadow-inner">
+            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Com a BEE.DO você receberia
+            </p>
+            <p class="text-6xl font-bold text-beedo-dark tracking-tighter mb-4" id="simNew">€36.000</p>
+            <div
+              class="inline-flex items-center gap-2 bg-beedo-blue/10 text-beedo-blue px-6 py-2 rounded-full text-base font-bold mb-4"
+              id="simDiff">
+              +€7.200 EXTRA
+            </div>
+            <p class="text-beedo-slate text-sm font-medium">por ano no seu bolso. <br><span
+                class="text-[10px] opacity-60">Comparado com a retenção de hoje.</span></p>
+
+            <a href="#contacto"
+              class="mt-10 block w-full py-4 bg-beedo-dark text-white rounded-xl font-bold hover:bg-slate-800 transition-all">
+              Aproveitar este lucro agora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="vantagens" class="py-24 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal active">
+        <h2 class="text-4xl md:text-5xl font-bold text-beedo-dark tracking-tight">Tudo o que precisa, <br><span
+            class="text-slate-400">para focar no que importa.</span></h2>
+        <div class="w-20 h-1.5 bg-beedo-orange rounded-full mx-auto mt-8"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <!-- Benefit Card 1 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-hand-holding-usd text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">100% Comissões + Over's</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Receberá a totalidade das remunerações negociadas com as
+            seguradoras, incluindo bónus contratuais.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-crown text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Autonomia Total</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Não somos um franchising. Mantém a sua marca, a sua
+            estrutura e total independência comercial.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-globe text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Acesso ao Mercado</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Seguradoras mundiais, condições exclusivas e o poder
+            negocial de uma rede consolidada.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-microchip text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Portal Digital</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Gestão de carteira em tempo real, CRM dedicado e
+            multi-tarificadores integrados com a sua marca.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-graduation-cap text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Formação Contínua</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Formação obrigatória, eventos anuais e mentoria de
+            especialistas para alavancar vendas.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="group reveal active">
+          <div
+            class="mb-6 w-14 h-14 rounded-2xl bg-beedo-blue/5 border border-beedo-blue/10 flex items-center justify-center text-beedo-blue group-hover:bg-beedo-blue group-hover:text-white transition-all duration-500">
+            <i class="fas fa-gavel text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-4">Jurídico & Compliance</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Nós garantimos a conformidade com ASF e RGPD. Foque-se no
+            negócio, nós cuidamos das regras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Showcase -->
+  <section id="tecnologia" class="py-24 bg-beedo-light relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="reveal active">
+        <span class="text-beedo-blue font-bold uppercase tracking-widest text-xs mb-3 block">Insurtech Hub</span>
+        <h2 class="text-5xl font-bold text-beedo-dark tracking-tight leading-tight mb-8">O seu negócio, <br>na palma da
+          mão.</h2>
+
+        <div class="space-y-6">
+          <div
+            class="p-6 rounded-2xl bg-white border border-slate-100 flex gap-6 hover:border-beedo-blue/30 transition-all cursor-pointer group shadow-sm">
+            <div class="text-beedo-blue text-xl group-hover:scale-110 transition-transform"><i
+                class="fas fa-tachometer-alt"></i></div>
+            <div>
+              <h4 class="font-bold text-beedo-dark">Dashboard em tempo real</h4>
+              <p class="text-sm text-beedo-slate mt-1">Visão completa com KPIs e alertas atualizados ao segundo.</p>
+            </div>
+          </div>
+          <div
+            class="p-6 rounded-2xl bg-white border border-slate-100 flex gap-6 hover:border-beedo-blue/30 transition-all cursor-pointer group shadow-sm">
+            <div class="text-beedo-blue text-xl group-hover:scale-110 transition-transform"><i
+                class="fas fa-layer-group"></i></div>
+            <div>
+              <h4 class="font-bold text-beedo-dark">PWA Nativo</h4>
+              <p class="text-sm text-beedo-slate mt-1">Funciona em qualquer smartphone como uma App original.</p>
+            </div>
+          </div>
+          <div class="p-6 rounded-2xl bg-beedo-orange text-white flex gap-6 shadow-orange-glow">
+            <div class="text-xl"><i class="fas fa-palette"></i></div>
+            <div>
+              <h4 class="font-bold">Personalização "White-label"</h4>
+              <p class="text-sm font-medium opacity-90 mt-1">O portal assume o seu logótipo e as suas cores.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative reveal active">
+        <!-- Dashboard Mockup -->
+        <div class="bg-slate-900 p-4 rounded-[2.5rem] shadow-2xl border border-slate-800 scale-105">
+          <div class="bg-white rounded-[2rem] p-8 min-h-[400px]">
+            <div class="flex justify-between items-center mb-10">
+              <span class="text-beedo-dark font-bold text-lg">BEE.DO <span
+                  class="text-slate-400 italic">Portal</span></span>
+              <div class="flex gap-2">
+                <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400"><i
+                    class="fas fa-bell"></i></div>
+                <div
+                  class="w-8 h-8 rounded-full bg-beedo-dark text-white flex items-center justify-center text-xs font-bold">
+                  JD</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4 mb-8">
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <p class="text-[9px] uppercase font-bold text-slate-400 mb-1">Carteira</p>
+                <p class="text-xl font-bold text-beedo-dark">€487k</p>
+              </div>
+              <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                <p class="text-[9px] uppercase font-bold text-slate-400 mb-1">Clientes</p>
+                <p class="text-xl font-bold text-beedo-dark">1,247</p>
+              </div>
+              <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+                <p class="text-[9px] uppercase font-bold text-emerald-400 mb-1">Retenção</p>
+                <p class="text-xl font-bold text-emerald-600">94%</p>
+              </div>
+            </div>
+            <div
+              class="h-40 bg-slate-50 rounded-[1.5rem] border border-slate-100 flex items-end justify-between px-8 pb-4">
+              <div class="w-6 bg-beedo-orange rounded-t-lg transition-all" style="height: 40%"></div>
+              <div class="w-6 bg-beedo-blue rounded-t-lg transition-all" style="height: 60%"></div>
+              <div class="w-6 bg-beedo-orange rounded-t-lg transition-all" style="height: 85%"></div>
+              <div class="w-6 bg-beedo-blue rounded-t-lg transition-all" style="height: 50%"></div>
+              <div class="w-6 bg-beedo-orange rounded-t-lg transition-all" style="height: 95%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="absolute -bottom-6 -right-4 bg-beedo-dark text-white px-6 py-3 rounded-xl shadow-premium flex items-center gap-3 font-bold text-xs">
+          <span class="text-beedo-orange">⚡</span> Powered by LLUNI
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section id="como-funciona" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 reveal active">
+        <span class="text-beedo-blue font-bold uppercase tracking-widest text-xs mb-3 block">O Caminho</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-beedo-dark tracking-tight">Junte-se em <span
+            class="text-beedo-orange italic">4 passos.</span></h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <div class="p-10 rounded-3xl bg-beedo-light border border-slate-100 relative group reveal active">
+          <div
+            class="w-12 h-12 bg-beedo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-lg">
+            1</div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-3">Fale connosco</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Conversa informal para conhecer o seu negócio e objetivos.
+          </p>
+        </div>
+        <div class="p-10 rounded-3xl bg-beedo-light border border-slate-100 relative group reveal active">
+          <div
+            class="w-12 h-12 bg-beedo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-lg">
+            2</div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-3">Proposta</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Desenvolvemos condições personalizadas para a sua
+            carteira.</p>
+        </div>
+        <div class="p-10 rounded-3xl bg-beedo-light border border-slate-100 relative group reveal active">
+          <div
+            class="w-12 h-12 bg-beedo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-lg">
+            3</div>
+          <h3 class="text-xl font-bold text-beedo-dark mb-3">Integração</h3>
+          <p class="text-beedo-slate text-sm leading-relaxed">Setup rápido do seu Portal do Parceiro white-label.</p>
+        </div>
+        <div class="p-10 rounded-3xl bg-beedo-orange text-white relative group reveal active shadow-orange-glow">
+          <div
+            class="w-12 h-12 bg-white text-beedo-orange rounded-xl flex items-center justify-center font-bold text-xl mb-6 shadow-lg">
+            4</div>
+          <h3 class="text-xl font-bold mb-3">Escale</h3>
+          <p class="text-white/90 text-sm leading-relaxed">Comece a faturar 100% das comissões desde o primeiro dia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantees -->
+  <section class="py-20 bg-beedo-dark">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
+      <div class="reveal active">
+        <div
+          class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl ring-1 ring-white/10">
+          🔓</div>
+        <h3 class="font-bold text-white text-lg mb-3">Sem Lock-in</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Pode sair a qualquer momento, sem cláusulas indemnizatórias.
+          Fidelizamos pelo valor entregue.</p>
+      </div>
+      <div class="reveal active">
+        <div
+          class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl ring-1 ring-white/10">
+          🛡️</div>
+        <h3 class="font-bold text-white text-lg mb-3">Supervisão ASF</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Total conformidade regulatória. Ética e transparência total no
+          mercado segurador português.</p>
+      </div>
+      <div class="reveal active">
+        <div
+          class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl ring-1 ring-white/10">
+          🤝</div>
+        <h3 class="font-bold text-white text-lg mb-3">Fundação Sólida</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Bull Insurance, Catarino Seguros e NewCall Seguros unidas para
+          fortalecer a sua independência.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section id="contacto" class="py-32 bg-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-beedo-blue via-beedo-orange to-beedo-blue"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal active">
+      <h2 class="text-5xl md:text-6xl font-bold text-beedo-dark tracking-tight mb-8 leading-tight">Pronto para ficar com
+        <br><span class="text-beedo-orange italic">100%</span> do que é seu?
+      </h2>
+      <p class="text-lg text-beedo-slate font-medium mb-12 max-w-2xl mx-auto">Agende uma conversa estratégica de 15
+        minutos sem compromisso. Descubra quanto está a perder e como podemos alavancar o seu futuro.</p>
+
+      <div class="flex flex-col items-center gap-6">
+        <a href="mailto:parcerias@beedo.pt"
+          class="px-12 py-5 bg-beedo-dark text-white rounded-full text-xl font-bold hover:bg-beedo-blue transition-all shadow-premium hover:-translate-y-1">
+          Agendar conversa gratuita
+        </a>
+        <p class="text-beedo-slate font-bold uppercase tracking-widest text-xs flex items-center gap-3">
+          <span class="w-8 h-px bg-slate-200"></span>
+          Ou ligue +351 912 345 678
+          <span class="w-8 h-px bg-slate-200"></span>
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ Section -->
+  <section id="perguntas" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="text-beedo-orange font-bold uppercase tracking-widest text-xs mb-3 block">FAQ Extenso</span>
+        <h2 class="text-4xl font-bold text-beedo-dark tracking-tight">Perguntas Frequentes</h2>
+        <p class="text-beedo-slate mt-4">Tudo o que precisa de saber sobre o modelo Bee.Do, o negócio e a nossa
+          tecnologia.</p>
+      </div>
+
+      <div class="faq-container space-y-12">
+        <!-- Category: SOBRE A BEE.DO -->
+        <div class="reveal">
+          <h3 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-4">
+            Sobre a Bee.Do Group <span class="flex-1 h-px bg-slate-100"></span>
+          </h3>
+          <div class="space-y-3">
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">O que é a BEE.DO
+                  Insurance Group?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  A BEE.DO Insurance Group é uma marca registada fundada pelas empresas Bull Insurance, Catarino Seguros
+                  e NewCall Seguros. É um projeto de agregação de distribuidores de seguros nacional que procura
+                  otimizar a relação dos mediadores com os seus clientes e seguradoras.
+                </div>
+              </div>
+            </div>
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">Quem fundou a
+                  BEE.DO e qual a sua experiência?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  Fundada por três empresas de mediação consolidadas (Bull, Catarino e NewCall), a equipa reúne mais de
+                  30 anos de experiência, gere uma carteira de 10M€ e serve cerca de 20.000 clientes.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: MODELO DE NEGÓCIO -->
+        <div class="reveal pt-12">
+          <h3 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-4">
+            Modelo de Negócio <span class="flex-1 h-px bg-slate-100"></span>
+          </h3>
+          <div class="space-y-3">
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">A BEE.DO é um
+                  franchising? Tenho exclusividade?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  Não é um franchising. É um modelo colaborativo onde mantém total autonomia financeira e de gestão. Não
+                  existe obrigação de exclusividade nem taxas de entrada.
+                </div>
+              </div>
+            </div>
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">Como posso sair do
+                  projeto?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  A saída é livre e pode ser feita a qualquer momento mediante comunicação formal, sem cláusulas
+                  indemnizatórias. O seu negócio e a sua marca permanecem sempre seus.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: COMISSÕES -->
+        <div class="reveal pt-12">
+          <h3 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-4">
+            Comissões e Rendimentos <span class="flex-1 h-px bg-slate-100"></span>
+          </h3>
+          <div class="space-y-3">
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">Recebo mesmo 100%
+                  das comissões e Over's?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  Sim. A BEE.DO entrega a totalidade das remunerações (base + over's de performance) aos associados. O
+                  nosso modelo foca no ganho de escala negociando melhores condições globais.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: TECNOLOGIA -->
+        <div class="reveal pt-12">
+          <h3 class="text-sm font-black uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-4">
+            Tecnologia e Serviços <span class="flex-1 h-px bg-slate-100"></span>
+          </h3>
+          <div class="space-y-3">
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">O que é o Portal
+                  do Parceiro e o que permite?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  O Portal do Parceiro é uma plataforma digital PWA (powered by LLUNI) que permite a gestão completa da
+                  carteira em tempo real, dashboard com KPIs, pesquisa rápida e personalização total.
+                </div>
+              </div>
+            </div>
+            <div
+              class="faq-item border border-slate-100 rounded-2xl overflow-hidden bg-beedo-light/50 transition-all hover:border-beedo-blue/20">
+              <button class="faq-toggle w-full px-8 py-5 text-left flex justify-between items-center group">
+                <span class="font-bold text-beedo-dark group-hover:text-beedo-blue transition-colors">O que significa
+                  “sem lock-in”?</span>
+                <i class="fas fa-chevron-down text-slate-300 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-content overflow-hidden max-h-0 transition-all duration-300 bg-white">
+                <div class="px-8 pb-6 text-sm text-beedo-slate leading-relaxed border-t border-slate-50 pt-4">
+                  Significa liberdade. Não existem cláusulas de fidelização forçada nem penalizações financeiras à
+                  saída. Acreditamos na fidelização pelo valor, não pelo contrato.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-beedo-light border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+      <a href="#" class="flex items-center gap-2">
+        <img src="/logos/logo-color.png" alt="BEE.DO Logo" class="h-8 w-auto">
+      </a>
+
+      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center">
+        © 2025 BEE.DO Insurance Group — Bull Insurance · Catarino Seguros · NewCall Seguros
+      </p>
+
+      <div class="flex gap-4">
+        <a href="#"
+          class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-beedo-blue transition-colors text-sm"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="#"
+          class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-beedo-blue transition-colors text-sm"><i
+            class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Simulator Logic
+    function updateSim() {
+      const carteiraVal = document.getElementById('simCarteira').value;
+      const comissaoVal = document.getElementById('simComissao').value;
+      const retidaVal = document.getElementById('simRetida').value;
+
+      // Update value displays
+      document.getElementById('simCarteiraValue').textContent = '€' + (parseInt(carteiraVal)).toLocaleString('pt-PT');
+      document.getElementById('simComissaoValue').textContent = comissaoVal + '%';
+      document.getElementById('simRetidaValue').textContent = retidaVal + '%';
+
+      // Calculations
+      const carteira = parseFloat(carteiraVal) || 0;
+      const comissao = parseFloat(comissaoVal) || 0;
+      const retida = parseInt(retidaVal);
+
+      const comissaoBruta = carteira * (comissao / 100);
+      const redeAtual = comissaoBruta * (1 - retida / 100);
+      const beedo = comissaoBruta;
+      const diff = beedo - redeAtual;
+
+      // Update Results
+      if (document.getElementById('simNew')) document.getElementById('simNew').textContent = '€' + Math.round(beedo).toLocaleString('pt-PT');
+      if (document.getElementById('simDiff')) document.getElementById('simDiff').textContent = '€' + Math.round(diff).toLocaleString('pt-PT');
+    }
+
+    // Event Listeners for Simulator
+    document.getElementById('simCarteira').addEventListener('input', updateSim);
+    document.getElementById('simComissao').addEventListener('input', updateSim);
+    document.getElementById('simRetida').addEventListener('input', updateSim);
+
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('bg-white', 'shadow-md', 'border-slate-200', 'py-4');
+        nav.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+      } else {
+        nav.classList.remove('bg-white', 'shadow-md', 'border-slate-200', 'py-4');
+        nav.classList.add('bg-transparent', 'border-transparent', 'py-6');
+      }
+    });
+
+    // Reveal on Scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // FAQ Accordion Logic
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.fas');
+
+        // Toggle Active Class
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Close all others
+        document.querySelectorAll('.faq-content').forEach(c => {
+          c.style.maxHeight = '0px';
+          c.previousElementSibling.querySelector('.fas').style.transform = 'rotate(0deg)';
+        });
+
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          content.style.maxHeight = '0px';
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // Initialize
+    updateSim();
+  </script>
+
+  <!-- Chatbot HTML -->
+  <div id="beedo-chatbot-container">
+    <button id="beedo-chatbot-trigger">
+      <i class="fas fa-comment-dots text-2xl"></i>
+    </button>
+
+    <div id="beedo-chatbot-window">
+      <div id="beedo-chatbot-header">
+        <div class="brand">
+          <div class="avatar">B</div>
+          <span class="title">BEE.DO Assistant</span>
+        </div>
+        <button id="beedo-chatbot-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="beedo-chatbot-messages">
+        <!-- Messages will be injected here -->
+      </div>
+      <div id="beedo-chatbot-input-container">
+        <input type="text" id="beedo-chatbot-input" placeholder="Escreva a sua pergunta...">
+        <button id="beedo-chatbot-send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="chatbot.js"></script>
+</body>
+
+</html>
