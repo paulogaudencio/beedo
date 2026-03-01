@@ -413,7 +413,7 @@
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-24">
-                <div className="flex-1">
+                <div className="lg:flex-[0.8] w-full">
                   <div className="grid sm:grid-cols-2 gap-8">
                     {techFeatures.map((f, i) => (
                       <div
@@ -436,8 +436,8 @@
                     <span className="text-xl font-black text-blue-600 tracking-tighter">LLUNI</span>
                   </div>
                 </div>
-                <div className="flex-1 relative">
-                  <div className="bg-white rounded-[40px] shadow-3xl p-4 overflow-hidden transform rotate-2">
+                <div className="lg:flex-[1.2] w-full relative">
+                  <div className="bg-white rounded-[40px] shadow-3xl p-4 overflow-hidden">
                     <img
                       src={techFeatures[activeTechTab].img}
                       className="w-full aspect-video object-cover rounded-[32px] transition-all duration-500"
