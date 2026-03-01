@@ -17,6 +17,12 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Chatbot CSS -->
+  <link rel="stylesheet" href="chatbot.css">
+
   <style>
     @keyframes bounce-slow {
 
@@ -97,6 +103,91 @@
         }
       }, [name, size, className]);
       return <span ref={iconRef} className="inline-flex items-center justify-center" style={{ width: size, height: size }} />;
+    };
+
+    const FAQItem = ({ question, answer }) => {
+      const [isOpen, setIsOpen] = useState(false);
+      return (
+        <div className="border border-slate-100 rounded-2xl overflow-hidden bg-slate-50/50 transition-all hover:border-blue-100 mb-4">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full px-8 py-6 text-left flex justify-between items-center group"
+          >
+            <span className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{question}</span>
+            <Icon
+              name="chevron-down"
+              size={20}
+              className={`text-slate-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
+          <div
+            className="overflow-hidden transition-all duration-300 bg-white"
+            style={{ maxHeight: isOpen ? '1000px' : '0px' }}
+          >
+            <div className="px-8 pb-8 text-slate-500 leading-relaxed border-t border-slate-50 pt-6">
+              {answer}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const FAQ = () => {
+      const categories = [
+        {
+          title: "Sobre a Bee.Do Group",
+          items: [
+            { q: "O que é a BEE.DO Insurance Group?", a: "A BEE.DO Insurance Group é uma marca registada fundada pelas empresas Bull Insurance, Catarino Seguros e NewCall Seguros. É um projeto de agregação de distribuidores de seguros nacional que procura otimizar a relação dos mediadores com os seus clientes e seguradoras." },
+            { q: "Quem fundou a BEE.DO e qual a sua experiência?", a: "Fundada por três empresas de mediação consolidadas (Bull, Catarino e NewCall), a equipa reúne mais de 30 anos de experiência, gere uma carteira de 10M€ e serve cerca de 20.000 clientes." }
+          ]
+        },
+        {
+          title: "Modelo de Negócio",
+          items: [
+            { q: "A BEE.DO é um franchising? Tenho exclusividade?", a: "Não é um franchising. É um modelo colaborativo onde mantém total autonomia financeira e de gestão. Não existe obrigação de exclusividade nem taxas de entrada." },
+            { q: "Como posso sair do projeto?", a: "A saída é livre e pode ser feita a qualquer momento mediante comunicação formal, sem cláusulas indemnizatórias. O seu negócio e a sua marca permanecem sempre seus." }
+          ]
+        },
+        {
+          title: "Comissões e Rendimentos",
+          items: [
+            { q: "Recebo mesmo 100% das comissões e Over's?", a: "Sim. A BEE.DO entrega a totalidade das remunerações (base + over's de performance) aos associados. O nosso modelo foca no ganho de escala negociando melhores condições globais." }
+          ]
+        },
+        {
+          title: "Tecnologia e Serviços",
+          items: [
+            { q: "O que é o Portal do Parceiro e o que permite?", a: "O Portal do Parceiro é uma plataforma digital PWA (powered by LLUNI) que permite a gestão completa da carteira em tempo real, dashboard com KPIs, pesquisa rápida e personalização total." },
+            { q: "O que significa “sem lock-in”?", a: "Significa liberdade. Não existem cláusulas de fidelização forçada nem penalizações financeiras à saída. Acreditamos na fidelização pelo valor, não pelo contrato." }
+          ]
+        }
+      ];
+
+      return (
+        <section id="perguntas" className="py-24 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl lg:text-5xl font-black text-slate-950 mb-6">Perguntas Frequentes</h2>
+              <p className="text-xl text-slate-500">Tudo o que precisa de saber sobre o modelo Bee.Do, o negócio e a nossa tecnologia.</p>
+            </div>
+
+            <div className="space-y-12">
+              {categories.map((cat, i) => (
+                <div key={i}>
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 flex items-center gap-4">
+                    {cat.title} <span className="flex-1 h-px bg-slate-100"></span>
+                  </h3>
+                  <div>
+                    {cat.items.map((item, j) => (
+                      <FAQItem key={j} question={item.q} answer={item.a} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
     };
 
     const App = () => {
@@ -380,6 +471,8 @@
             </div>
           </section>
 
+          <FAQ />
+
           <section id="contacto" className="py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[64px] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-3xl">
@@ -405,6 +498,34 @@
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
+  <div id="beedo-chatbot-container">
+    <button id="beedo-chatbot-trigger">
+      <i class="fas fa-comment-dots text-2xl"></i>
+    </button>
+
+    <div id="beedo-chatbot-window">
+      <div id="beedo-chatbot-header">
+        <div class="brand">
+          <div class="avatar">B</div>
+          <span class="title">BEE.DO Assistant</span>
+        </div>
+        <button id="beedo-chatbot-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="beedo-chatbot-messages">
+        <!-- Messages will be injected here -->
+      </div>
+      <div id="beedo-chatbot-input-container">
+        <input type="text" id="beedo-chatbot-input" placeholder="Escreva a sua pergunta...">
+        <button id="beedo-chatbot-send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="chatbot.js"></script>
 </body>
 
 </html>
