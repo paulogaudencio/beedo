@@ -452,9 +452,13 @@
             </div>
           </section>
 
-          <section id="como-funciona" className="py-24 bg-white text-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-5xl font-black text-slate-950 mb-16">Junte-se em <span className="text-blue-600">4 passos simples</span></h2>
+          <section id="como-funciona" className="py-24 bg-blue-600 text-center relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-[120px] -mr-48 -mt-48"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-[120px] -ml-48 -mb-48"></div>
+            </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <h2 className="text-5xl font-black text-white mb-16 underline decoration-orange-500 decoration-4 underline-offset-8">Junte-se em <span className="text-white">4 passos simples</span></h2>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
                 {[
                   { n: "01", t: "Fale connosco", d: "Conversa informal para conhecer o seu negócio." },
@@ -463,10 +467,10 @@
                   { n: "04", t: "Ganhe mais", d: "Acesso imediato a 100% das comissões." }
                 ].map((step, i) => (
                   <div key={i} className="relative pt-8">
-                    <div className="text-8xl font-black text-blue-200 absolute -top-8 -left-4 -z-0">{step.n}</div>
+                    <div className="text-8xl font-black text-white/10 absolute -top-8 -left-4 -z-0">{step.n}</div>
                     <div className="relative z-10">
-                      <h3 className="text-xl font-bold text-slate-950 mb-3">{step.t}</h3>
-                      <p className="text-slate-500 text-sm">{step.d}</p>
+                      <h3 className="text-xl font-bold text-white mb-3">{step.t}</h3>
+                      <p className="text-blue-50 text-sm leading-relaxed">{step.d}</p>
                     </div>
                   </div>
                 ))}
