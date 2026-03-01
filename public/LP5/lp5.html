@@ -142,7 +142,7 @@
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                   <div className="flex items-center">
-                    <img src={isScrolled ? '../logos/logo-color.png' : '../logos/logo-white.png'} alt="BEE.DO Logo" className="h-10 w-auto transition-all duration-300" />
+                    <img src={isScrolled ? '../logos/logo-color.png' : '../logos/logo-white.png'} alt="BEE.DO Logo" className="h-12 w-auto transition-all duration-300" />
                   </div>
                   <div className="hidden md:flex items-center gap-10">
                     <a href="#problema" className={`text-sm font-bold transition-colors ${isScrolled ? 'text-slate-600 hover:text-blue-600' : 'text-slate-200 hover:text-white'}`}>O Problema</a>
@@ -179,7 +179,7 @@
                     <a href="#simulador" className="w-full sm:w-auto px-10 py-5 bg-orange-500 hover:bg-orange-600 text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-2xl shadow-orange-900/50 group">
                       Calcular ganhos <Icon name="arrow-right" size={20} className="group-hover:translate-x-1 transition-transform" />
                     </a>
-                    <a href="#como-funciona" className="w-full sm:w-auto px-10 py-5 bg-white/10 text-white border border-white/20 backdrop-blur-sm rounded-2xl font-bold text-lg transition-all hover:bg-white/20 flex items-center justify-center gap-2">
+                    <a href="#como-funciona" className="w-full sm:w-auto px-10 py-5 bg-white/10 text-white border border-white/10 backdrop-blur-sm rounded-2xl font-bold text-lg transition-all hover:bg-white/20 flex items-center justify-center gap-2">
                       Como funciona? <Icon name="chevron-right" size={20} />
                     </a>
                   </div>
@@ -220,7 +220,7 @@
                   { title: "Compliance", desc: "RGPD e ASF.", icon: "scale", color: "text-slate-700" },
                   { title: "Contratos que prendem", desc: "Exclusividade limitante.", icon: "lock", color: "text-slate-900" }
                 ].map((card, i) => (
-                  <div key={i} className="bg-white p-10 rounded-[32px] border border-slate-100 hover:border-blue-100 transition-all group">
+                  <div key={i} className="bg-white p-10 rounded-[32px] border border-slate-200 hover:border-blue-300 transition-all group">
                     <div className={`w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-all ${card.color}`}>
                       <Icon name={card.icon} size={28} />
                     </div>
@@ -232,7 +232,7 @@
             </div>
           </section>
 
-          <section id="simulador" className="py-24 relative overflow-hidden bg-slate-50">
+          <section id="simulador" className="py-24 relative overflow-hidden bg-slate-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="max-w-2xl mx-auto text-center mb-16">
                 <span className="text-blue-500 font-bold uppercase tracking-widest text-xs mb-3 block">Simulador de Ganhos</span>
