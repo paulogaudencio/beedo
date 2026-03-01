@@ -142,7 +142,7 @@
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                   <div className="flex items-center">
-                    <img src={isScrolled ? '../logos/logo-color.png' : '../logos/logo-white.png'} alt="BEE.DO Logo" className="h-12 w-auto transition-all duration-300" />
+                    <img src={isScrolled ? '../logos/logo-color.png' : '../logos/logo-white.png'} alt="BEE.DO Logo" className="h-14 w-auto transition-all duration-300" />
                   </div>
                   <div className="hidden md:flex items-center gap-10">
                     <a href="#problema" className={`text-sm font-bold transition-colors ${isScrolled ? 'text-slate-600 hover:text-blue-600' : 'text-slate-200 hover:text-white'}`}>O Problema</a>
@@ -236,7 +236,8 @@
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="max-w-2xl mx-auto text-center mb-16">
                 <span className="text-blue-500 font-bold uppercase tracking-widest text-xs mb-3 block">Simulador de Ganhos</span>
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">O seu lucro real</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Quanto está a deixar em cima da mesa?</h2>
+                <p className="mt-4 text-slate-600 font-medium">Compare o que ganha hoje numa rede tradicional vs. o que ganharia na BEE.DO. A diferença é o seu lucro real!</p>
               </div>
               <div className="max-w-5xl mx-auto bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl border border-slate-100">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -258,7 +259,7 @@
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Com a BEE.DO você receberia</p>
                     <p className="text-6xl font-black text-slate-900 tracking-tighter mb-4">{formatCurrency(beedoNet)}</p>
                     <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-6 py-2 rounded-full text-base font-bold mb-4">+{formatCurrency(annualLoss)} EXTRA</div>
-                    <a href="#contacto" className="mt-10 block w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all">Aproveitar este lucro agora</a>
+                    <a href="#contacto" className="mt-10 block w-full py-4 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600 transition-all">Aproveitar este lucro agora</a>
                   </div>
                 </div>
               </div>
@@ -268,7 +269,7 @@
           <section id="beneficios" className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-20">
-                <h2 className="text-4xl lg:text-5xl font-black text-slate-950">Tudo o que precisa.</h2>
+                <h2 className="text-4xl lg:text-5xl font-black text-slate-950">Tudo o que precisa, para focar no que importa.</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
                 {[
