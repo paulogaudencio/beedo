@@ -334,11 +334,11 @@
                   <div className="space-y-10">
                     <div>
                       <div className="flex justify-between items-center mb-4"><label className="text-sm font-bold text-slate-900">Carteira Anual</label><span className="text-blue-500 font-bold">{formatCurrency(premium)}</span></div>
-                      <input type="range" min="10000" max="1000000" step="10000" value={premium} onChange={(e) => setPremium(Number(e.target.value))} className="w-full cursor-pointer" />
+                      <input type="range" min="10000" max="2000000" step="10000" value={premium} onChange={(e) => setPremium(Number(e.target.value))} className="w-full cursor-pointer" />
                     </div>
                     <div>
                       <div className="flex justify-between items-center mb-4"><label className="text-sm font-bold text-slate-900">Comissão Média (%)</label><span className="text-blue-500 font-bold">{avgComm}%</span></div>
-                      <input type="range" min="5" max="30" step="1" value={avgComm} onChange={(e) => setAvgComm(Number(e.target.value))} className="w-full cursor-pointer" />
+                      <input type="range" min="5" max="15" step="1" value={avgComm} onChange={(e) => setAvgComm(Number(e.target.value))} className="w-full cursor-pointer" />
                     </div>
                     <div>
                       <div className="flex justify-between items-center mb-4"><label className="text-sm font-bold text-slate-900">Retenção Atual (%)</label><span className="text-red-500 font-bold">{retention}%</span></div>
@@ -347,8 +347,8 @@
                   </div>
                   <div className="bg-slate-50 rounded-2xl p-8 text-center border border-slate-100 shadow-inner">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Com a BEE.DO você receberia</p>
-                    <p className="text-6xl font-black text-slate-900 tracking-tighter mb-4">{formatCurrency(beedoNet)}</p>
-                    <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-6 py-2 rounded-full text-base font-bold mb-4">+{formatCurrency(annualLoss)} EXTRA</div>
+                    <p className="text-3xl font-black text-slate-900 tracking-tighter mb-4">{formatCurrency(beedoNet)}</p>
+                    <div className="inline-flex items-center justify-center bg-blue-50 text-blue-600 px-6 py-2 rounded-full text-3xl font-bold mb-4 w-full">+{formatCurrency(annualLoss)} EXTRA</div>
                     <a href="#contacto" className="mt-10 block w-full py-4 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600 transition-all">Aproveitar este lucro agora</a>
                   </div>
                 </div>
@@ -507,26 +507,57 @@
   </script>
   <div id="beedo-chatbot-container">
     <button id="beedo-chatbot-trigger">
-      <i class="fas fa-comment-dots text-2xl"></i>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
     </button>
 
     <div id="beedo-chatbot-window">
       <div id="beedo-chatbot-header">
         <div class="brand">
-          <div class="avatar">B</div>
-          <span class="title">BEE.DO Assistant</span>
+          <div class="avatar"><img src="../logos/logo-white.png" alt="BEE.DO Logo"></div>
+          <div class="brand-info">
+            <span class="status"><span class="status-dot"></span> Online</span>
+          </div>
         </div>
         <button id="beedo-chatbot-close">
-          <i class="fas fa-times"></i>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
+
+      <div id="beedo-chatbot-chips">
+        <button class="beedo-chip" data-message="Como funcionam o 100% de comissão?">💰 100% Comissão</button>
+        <button class="beedo-chip" data-message="Como posso aderir?">🤝 Como aderir?</button>
+        <button class="beedo-chip" data-message="Quero marcar uma reunião.">📅 Marcar reunião</button>
+        <button class="beedo-chip" data-message="O que é o Ecossistema BEE.DO?">🐝 Ecossistema</button>
+      </div>
+
       <div id="beedo-chatbot-messages">
         <!-- Messages will be injected here -->
       </div>
+
+      <form id="beedo-lead-form">
+        <div class="lead-form-title">📋 Deixe os seus dados</div>
+        <div class="lead-form-subtitle">A nossa equipa irá contactá-lo em breve.</div>
+        <input type="text" id="lead-name" placeholder="Nome completo" required>
+        <input type="email" id="lead-email" placeholder="Email" required>
+        <input type="tel" id="lead-phone" placeholder="Telefone (opcional)">
+        <button type="submit" class="lead-submit-btn">Enviar Contacto</button>
+      </form>
+
       <div id="beedo-chatbot-input-container">
         <input type="text" id="beedo-chatbot-input" placeholder="Escreva a sua pergunta...">
         <button id="beedo-chatbot-send">
-          <i class="fas fa-paper-plane"></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
         </button>
       </div>
     </div>

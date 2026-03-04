@@ -1,7 +1,15 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/backoffice",
+            "destination": "/backoffice/index.html"
+        },
+        {
+            "source": "/backoffice/",
+            "destination": "/backoffice/index.html"
+        },
+        {
+            "source": "/((?!api|LP|backoffice|logos|images).*)",
             "destination": "/index.html"
         }
     ]
