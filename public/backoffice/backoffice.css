@@ -130,7 +130,8 @@ body {
 /* ─── Sidebar ─────────────────────────────────── */
 #sidebar {
     width: var(--sidebar-width);
-    background: var(--bg-dark);
+    background: #0f1c3f;
+    /* Dark Blue */
     display: flex;
     flex-direction: column;
     position: fixed;
