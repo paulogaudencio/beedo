@@ -286,10 +286,10 @@
                 { t: "Saída livre", d: "Sem letras pequenas" },
                 { t: "+30 anos", d: "Solidez comprovada" }
               ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <Icon name="check-circle" size={24} className="text-orange-500 mb-2" />
-                  <p className="font-bold text-slate-900 text-sm">{item.t}</p>
-                  <p className="text-xs text-slate-400 font-medium">{item.d}</p>
+                <div key={i} className="flex flex-col items-center text-center px-4">
+                  <Icon name="check-circle" size={32} className="text-orange-500 mb-3" />
+                  <p className="font-bold text-slate-900 text-lg mb-1">{item.t}</p>
+                  <p className="text-sm text-slate-500 font-medium">{item.d}</p>
                 </div>
               ))}
             </div>
