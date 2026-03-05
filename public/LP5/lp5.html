@@ -217,8 +217,7 @@
       const annualLoss = beedoNet - traditionalNet;
 
       const formatCurrency = (value) => {
-        const formatted = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
-        return formatted.replace(/\s/g, '.').replace('.€', ' €');
+        return new Intl.NumberFormat('de-DE').format(value) + ' €';
       };
 
       return (
@@ -349,8 +348,8 @@
                   </div>
                   <div className="bg-slate-50 rounded-2xl p-8 text-center border border-slate-100 shadow-inner">
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Com a BEE.DO você receberia</p>
-                    <p className="text-6xl font-black text-slate-900 tracking-tighter mb-4">{formatCurrency(beedoNet)}</p>
-                    <div className="text-5xl md:text-6xl font-black text-blue-600 tracking-tight mb-8">+{formatCurrency(annualLoss)} <span className="text-[0.7em]">EXTRA</span></div>
+                    <p className="text-6xl font-black text-slate-900 tracking-tighter mb-10">{formatCurrency(beedoNet)}</p>
+                    <div className="text-5xl md:text-6xl font-black text-blue-600 tracking-tight mb-8">+{formatCurrency(annualLoss)} <span className="text-[0.55em]">EXTRA</span></div>
                     <a href="#contacto" className="mt-6 block w-full py-4 bg-orange-500 text-white rounded-xl font-bold hover:bg-orange-600 transition-all">Aproveitar este lucro agora</a>
                   </div>
                 </div>
