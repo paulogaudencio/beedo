@@ -24,9 +24,7 @@ export default async function handler(req, res) {
         const { messages = [], customSystemPrompt } = req.body;
 
         // Build Gemini request
-        const systemPrompt = customSystemPrompt
-            ? `${SYSTEM_PROMPT}\n\n## INSTRUÇÕES ADICIONAIS DO ADMINISTRADOR\n${customSystemPrompt}`
-            : SYSTEM_PROMPT;
+        const systemPrompt = customSystemPrompt ? customSystemPrompt : SYSTEM_PROMPT;
 
         // Convert messages to Gemini format
         const geminiContents = messages.map(msg => ({
