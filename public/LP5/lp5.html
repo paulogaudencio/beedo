@@ -485,12 +485,40 @@
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[64px] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-3xl">
                 <h2 className="text-4xl lg:text-7xl font-black mb-8 relative z-10">Pronto para ficar com 100%?</h2>
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-6 rounded-3xl text-2xl font-black transition-all transform hover:scale-105 shadow-3xl flex items-center gap-4 mx-auto relative z-10">
-                  Agendar conversa gratuita <Icon name="arrow-right" />
-                </button>
-                <div className="mt-12 flex items-center justify-center gap-3 relative z-10">
+                <div className="max-w-xl mx-auto bg-white/10 p-8 rounded-[32px] backdrop-blur-md border border-white/20 relative z-10 mb-12">
+                  <form action="https://formsubmit.co/asalvo@beedo.pt" method="POST" className="flex flex-col gap-5 text-left">
+                    <input type="hidden" name="_subject" value="Novo Lead - LP5 (BEE.DO)" />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
+                    
+                    <div>
+                      <label className="text-sm font-bold text-white mb-2 block ml-1">Nome</label>
+                      <input type="text" name="Nome" required className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 border-none outline-none focus:ring-4 focus:ring-orange-500/50 shadow-inner" placeholder="O seu nome completo" />
+                    </div>
+                    
+                    <div>
+                      <label className="text-sm font-bold text-white mb-2 block ml-1">Email</label>
+                      <input type="email" name="Email" required className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 border-none outline-none focus:ring-4 focus:ring-orange-500/50 shadow-inner" placeholder="exemplo@email.com" />
+                    </div>
+                    
+                    <div>
+                      <label className="text-sm font-bold text-white mb-2 block ml-1">Nome Empresa</label>
+                      <input type="text" name="Empresa" required className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 border-none outline-none focus:ring-4 focus:ring-orange-500/50 shadow-inner" placeholder="Nome da sua empresa ou mediação" />
+                    </div>
+                    
+                    <div>
+                      <label className="text-sm font-bold text-white mb-2 block ml-1">Contacto Telefónico</label>
+                      <input type="tel" name="Telefone" required className="w-full px-5 py-4 rounded-2xl bg-white text-slate-900 border-none outline-none focus:ring-4 focus:ring-orange-500/50 shadow-inner" placeholder="910 000 000" />
+                    </div>
+                    
+                    <button type="submit" className="w-full mt-4 bg-orange-500 hover:bg-orange-600 text-white px-8 py-5 rounded-2xl text-xl font-black transition-all transform hover:-translate-y-1 shadow-2xl hover:shadow-orange-500/50 flex justify-center items-center gap-2 group">
+                      Agendar conversa gratuita <Icon name="arrow-right" size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </form>
+                </div>
+                <div className="flex items-center justify-center gap-3 relative z-10">
                   <Icon name="phone" size={18} />
-                  <span className="font-bold text-lg text-blue-50">+351 210 XXX XXX</span>
+                  <span className="font-bold text-lg text-blue-50">+351 910 484 290</span>
                 </div>
               </div>
             </div>
