@@ -1,4 +1,11 @@
 {
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/LP5/lp5.html",
+            "permanent": false
+        }
+    ],
     "rewrites": [
         {
             "source": "/backoffice",
