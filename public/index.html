@@ -108,23 +108,23 @@
     const FAQItem = ({ question, answer }) => {
       const [isOpen, setIsOpen] = useState(false);
       return (
-        <div className="border border-slate-100 rounded-2xl overflow-hidden bg-slate-50/50 transition-all hover:border-blue-100 mb-4">
+        <div className="border border-slate-200 rounded-lg overflow-hidden bg-white mb-3 shadow-sm">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full px-8 py-6 text-left flex justify-between items-center group"
+            className="w-full px-6 py-4 text-left flex justify-between items-center group bg-white hover:bg-slate-50 transition-colors"
           >
-            <span className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{question}</span>
+            <span className="text-[15px] font-bold text-slate-800 pr-4">{question}</span>
             <Icon
               name="chevron-down"
-              size={20}
-              className={`text-slate-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+              size={18}
+              className={`text-slate-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
             />
           </button>
           <div
             className="overflow-hidden transition-all duration-300 bg-white"
             style={{ maxHeight: isOpen ? '1000px' : '0px' }}
           >
-            <div className="px-8 pb-8 text-slate-500 leading-relaxed border-t border-slate-50 pt-6">
+            <div className="px-6 pb-5 text-[15px] text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
               {answer}
             </div>
           </div>
@@ -135,47 +135,71 @@
     const FAQ = () => {
       const categories = [
         {
-          title: "Sobre a Bee.Do Group",
+          title: "Sobre a BEE.DO",
           items: [
-            { q: "O que é a BEE.DO Insurance Group?", a: "A BEE.DO Insurance Group é uma marca registada fundada pelas empresas Bull Insurance, Catarino Seguros e NewCall Seguros. É um projeto de agregação de distribuidores de seguros nacional que procura otimizar a relação dos mediadores com os seus clientes e seguradoras." },
-            { q: "Quem fundou a BEE.DO e qual a sua experiência?", a: "Fundada por três empresas de mediação consolidadas (Bull, Catarino e NewCall), a equipa reúne mais de 30 anos de experiência, gere uma carteira de 10M€ e serve cerca de 20.000 clientes." }
+            { q: "O que é a BEE.DO – Insurance Group?", a: "A BEE.DO – Insurance Group é uma rede colaborativa de mediadores de seguros que opera na categoria de Corretor. Foi fundada pelas sociedades Bull Insurance, Catarino Seguros e NewCall — três empresas com longa experiência no sector. À data de lançamento, a rede já detém uma carteira de prémios brutos próxima dos 10 M€ e uma equipa conjunta de cerca de 20 pessoas." },
+            { q: "Por que razão foi criada a BEE.DO?", a: "O mercado segurador em Portugal tem-se consolidado de forma consistente, colocando os operadores de menor dimensão perante desafios que só podem ser superados de forma colaborativa. A aceleração da digitalização, a pressão sobre os preços, o aparecimento de insurtech e a crescente concentração do sector reduziram as vantagens competitivas dos mediadores independentes. A BEE.DO surge para inverter essa tendência — através da cooperação, da partilha de recursos e da criação de escala colectiva." },
+            { q: "Qual é a ambição da BEE.DO?", a: "A BEE.DO tem ambição nacional. O modelo é progressivo, contínuo e prevê um crescimento sustentado ao longo dos anos, integrando um número crescente de associados e parceiros — incluindo em zonas do país mais afastadas dos grandes centros, onde também existe necessidade de respostas qualificadas." },
+            { q: "Em que valores assenta a BEE.DO?", a: "A BEE.DO baseia-se em 7 pilares: Solidariedade, Transparência, Honorabilidade, Autonomia funcional, Não concorrência, Honestidade e Responsabilidade social. Estes valores constituem o código de conduta que rege todas as relações entre parceiros e clientes." }
           ]
         },
         {
-          title: "Modelo de Negócio",
+          title: "Modelo de Funcionamento",
           items: [
-            { q: "A BEE.DO é um franchising? Tenho exclusividade?", a: "Não é um franchising. É um modelo colaborativo onde mantém total autonomia financeira e de gestão. Não existe obrigação de exclusividade nem taxas de entrada." },
-            { q: "Como posso sair do projeto?", a: "A saída é livre e pode ser feita a qualquer momento mediante comunicação formal, sem cláusulas indemnizatórias. O seu negócio e a sua marca permanecem sempre seus." }
+            { q: "Como funciona a BEE.DO na prática?", a: "A BEE.DO assume a forma de sociedade de mediação — na classe de Corretor — que agrega num único portfólio as carteiras de todos os mediadores associados e parceiros, sem obrigação de exclusividade. Esta agregação coloca a rede num plano de relevância perante as seguradoras, aumentando a qualidade das relações e melhorando as condições de trabalho e de operação para todos." },
+            { q: "A BEE.DO é um franchising?", a: "Não. A BEE.DO é um modelo colaborativo, não um franchising. Os associados não perdem a sua identidade comercial, a sua carteira de clientes, nem a sua autonomia de gestão. A rede funciona como uma alavanca estratégica — não como uma estrutura que absorve ou substitui o parceiro." },
+            { q: "A BEE.DO exige exclusividade?", a: "Não existe obrigação de exclusividade. A adesão é feita sem essa condicionante, embora a rede valorize o alinhamento estratégico e o compromisso genuíno dos seus parceiros." },
+            { q: "A BEE.DO apenas distribui seguros?", a: "Não. A BEE.DO oferece uma abordagem consultiva completa: diagnóstico de risco, estruturação de programas de seguros, apoio na gestão de sinistros, revisão periódica de carteiras e consultoria técnica em garantias e contratos." },
+            { q: "O que distingue a BEE.DO de outras redes ou estruturas?", a: "O modelo colaborativo (não impositivo), o foco na rentabilidade e crescimento do parceiro, a estrutura técnica de suporte real, o acesso a soluções diferenciadas e produtos exclusivos, a especialização em ramos complexos (caução, D&O, ciber-risco) e a preservação total da autonomia. A BEE.DO não centraliza poder — distribui capacidade." }
           ]
         },
         {
-          title: "Comissões e Rendimentos",
+          title: "Adesão",
           items: [
-            { q: "Recebo mesmo 100% das comissões e Over's?", a: "Sim. A BEE.DO entrega a totalidade das remunerações (base + over's de performance) aos associados. O nosso modelo foca no ganho de escala negociando melhores condições globais." }
+            { q: "Como me torno associado da BEE.DO?", a: "A adesão materializa-se pela subscrição de capital social da BEE.DO – Insurance Group, em condições iguais para todos os associados, calculadas em função da carteira a agregar. Os mediadores tornam-se accionistas da BEE.DO sem custos de entrada, mediante a celebração de um contrato de vinculação em regime de agenciamento, em conformidade com as normas legais em vigor no sector." },
+            { q: "Quem pode tornar-se associado ou parceiro?", a: "A BEE.DO é adequada para: mediadores de seguros (individuais ou sociedades), corretores com carteira activa, estruturas de mediação em fase de crescimento, novos mediadores com ambição e estrutura, e profissionais que pretendam aceder a ramos técnicos e a maior capacidade negocial. A rede prevê ainda uma rede de partners para subagentes ou profissionais que não pretendam integrar o quadro accionista." },
+            { q: "Posso sair da BEE.DO?", a: "Sim. Os associados podem sair a qualquer momento, mediante comunicação formal nos termos previstos na lei, sem qualquer cláusula indemnizatória de parte a parte. A saída implica o fim do acesso às condições garantidas pela condição de associado." },
+            { q: "Existe algum custo de entrada para aderir?", a: "Não existem custos de entrada. Os mediadores tornam-se accionistas da BEE.DO através da subscrição de capital social calculada em função da carteira a agregar, sem necessidade de pagamento de qualquer taxa inicial." }
           ]
         },
         {
-          title: "Tecnologia e Serviços",
+          title: "Remuneração e Benefícios",
           items: [
-            { q: "O que é o Portal do Parceiro e o que permite?", a: "O Portal do Parceiro é uma plataforma digital PWA (powered by LLUNI) que permite a gestão completa da carteira em tempo real, dashboard com KPIs, pesquisa rápida e personalização total." },
-            { q: "O que significa “sem lock-in”?", a: "Significa liberdade. Não existem cláusulas de fidelização forçada nem penalizações financeiras à saída. Acreditamos na fidelização pelo valor, não pelo contrato." }
+            { q: "Como sou remunerado enquanto associado?", a: "A BEE.DO entrega aos seus associados a totalidade das remunerações nas condições negociadas com as seguradoras, incluindo as over's contratualizadas pela rede — o que representa um acréscimo de rendimento potencial para todos os parceiros." },
+            { q: "Quais os benefícios concretos de ser associado?", a: "Integração num operador de grande dimensão, pertença a uma equipa experiente e motivada, melhoria potencial das margens comerciais, maior capacidade de defesa e retenção de carteiras, acesso a todo o mercado segurador, alargamento da base de produtos e riscos, acesso a produtos exclusivos e ao canal de venda digital, possibilidade de autonomia na emissão, e apoio ao estabelecimento de parcerias." },
+            { q: "A que serviços tenho acesso enquanto associado?", a: "Os associados têm acesso a: sistema de gestão integrada (CRM) com acesso em tempo real à carteira, apoio à venda e informação comercial permanente, apoio em contratação pública, apoio à subscrição especializada, serviços de cross-selling, formação obrigatória programada, evento anual de formação, serviços jurídicos e de compliance, e participação no Conselho Estratégico da empresa. Estes serviços estão sujeitos a um fee calculado em função do volume de negócios." },
+            { q: "A BEE.DO tem produtos próprios para os associados?", a: "Sim. Está em fase de construção um portfólio de produtos próprios, disponíveis para todos os associados e partners em condições vantajosas de preço e remuneração — como forma de potenciar os negócios individuais e reforçar a posição na rede." }
+          ]
+        },
+        {
+          title: "Produtos e Ramos",
+          items: [
+            { q: "Em que ramos de seguros actua a BEE.DO?", a: "A rede actua em todos os ramos: Seguros Empresariais (RC, Multirriscos Empresarial, Acidentes de Trabalho, Frota Automóvel, Saúde Empresarial, Ciber-risco, D&O, Caução e Garantias Financeiras), Seguros Particulares (Automóvel, Habitação, Vida, Saúde, Acidentes Pessoais, Protecção de Crédito) e Seguros Técnicos e Especiais (Caução, Garantias Contratuais, Responsabilidades Técnicas, Seguros Financeiros)." },
+            { q: "A BEE.DO tem alguma especialização técnica?", a: "Sim. Embora actue de forma transversal em todos os ramos, a BEE.DO possui know-how diferenciado em seguros de caução e garantias financeiras, oferecendo: análise técnica especializada, estruturação de soluções para concursos públicos e apoio a empresas com contratos que exigem garantias." },
+            { q: "Manterei liberdade comercial após aderir?", a: "Sim. O parceiro mantém liberdade comercial total, com apoio técnico disponível sempre que necessário. A BEE.DO não impõe a venda de produtos específicos nem condiciona as relações comerciais existentes do parceiro." }
+          ]
+        },
+        {
+          title: "Contacto",
+          items: [
+            { q: "Como posso marcar uma reunião com a equipa BEE.DO?", a: "Para marcar uma conversa com um dos responsáveis da BEE.DO, envie um email para asalvo@beedo.pt ou ligue para 910 484 290. A nossa equipa terá todo o gosto em apresentar o modelo em detalhe e responder a qualquer questão específica sobre o seu caso." },
+            { q: "O que acontece se tiver dúvidas sobre condições contratuais específicas?", a: "Questões relativas a condições contratuais específicas, preços individuais ou acordos personalizados merecem uma resposta personalizada. Recomendamos que contacte directamente a equipa BEE.DO através do email asalvo@beedo.pt ou pelo telefone 910 484 290." }
           ]
         }
       ];
 
       return (
-        <section id="perguntas" className="py-24 bg-white">
+        <section id="perguntas" className="py-24 bg-slate-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-5xl lg:text-6xl font-black text-slate-950 mb-6">Perguntas Frequentes</h2>
-              <p className="text-xl text-slate-500">Tudo o que precisa de saber sobre o modelo Bee.Do, o negócio e a nossa tecnologia.</p>
+              <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-6">Perguntas Mais Frequentes</h2>
             </div>
 
             <div className="space-y-12">
               {categories.map((cat, i) => (
                 <div key={i}>
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-8 flex items-center gap-4">
-                    {cat.title} <span className="flex-1 h-px bg-slate-100"></span>
+                  <h3 className="text-2xl font-black text-blue-700 mb-6 pb-2 border-b border-slate-200">
+                    {cat.title}
                   </h3>
                   <div>
                     {cat.items.map((item, j) => (
