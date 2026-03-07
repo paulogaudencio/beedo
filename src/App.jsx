@@ -1,10 +1,10 @@
 import React from 'react'
-import LP3 from './pages/LP3'
+import LP5 from './pages/LP5'
 
 function App() {
     return (
         <div className="App">
-            <LP3 />
+            <LP5 />
         </div>
     )
 }

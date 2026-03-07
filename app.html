@@ -5,18 +5,86 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BEE.DO Insurance Group</title>
+    <title>BEE.DO - 100% Comissões para Mediadores</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet" href="/LP5/chatbot.css">
 </head>
 
-<body>
+<body class="bg-white">
     <div id="root"></div>
+
+    <!-- Chatbot Structure -->
+    <div id="beedo-chatbot-container">
+        <button id="beedo-chatbot-trigger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+
+        <div id="beedo-chatbot-window">
+            <div id="beedo-chatbot-header">
+                <div class="brand">
+                    <div class="avatar"><img src="/logos/logo-white.png" alt="BEE.DO Logo"></div>
+                    <div class="brand-info">
+                        <span class="status"><span class="status-dot"></span> Online</span>
+                    </div>
+                </div>
+                <button id="beedo-chatbot-close">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="beedo-chatbot-chips">
+                <button class="beedo-chip" data-message="Como funcionam o 100% de comissão?">💰 100% Comissão</button>
+                <button class="beedo-chip" data-message="Como posso aderir?">🤝 Como aderir?</button>
+                <button class="beedo-chip" data-message="Quero marcar uma reunião.">📅 Marcar reunião</button>
+                <button class="beedo-chip" data-message="O que é o Ecossistema BEE.DO?">🐝 Ecossistema</button>
+            </div>
+
+            <div id="beedo-chatbot-messages"></div>
+
+            <form id="beedo-lead-form">
+                <div class="lead-form-title">📋 Deixe os seus dados</div>
+                <div class="lead-form-subtitle">A nossa equipa irá contactá-lo em breve.</div>
+                <input type="text" id="lead-name" placeholder="Nome completo" required>
+                <input type="email" id="lead-email" placeholder="Email" required>
+                <input type="tel" id="lead-phone" placeholder="Telefone (opcional)">
+                <button type="submit" class="lead-submit-btn">Enviar Contacto</button>
+            </form>
+
+            <div id="beedo-chatbot-input-container">
+                <input type="text" id="beedo-chatbot-input" placeholder="Escreva a sua pergunta...">
+                <button id="beedo-chatbot-send">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Logic -->
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Chatbot Script -->
+    <script src="/LP5/chatbot.js"></script>
 </body>
 
 </html>

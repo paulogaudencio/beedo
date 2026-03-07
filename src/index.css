@@ -62,3 +62,31 @@
 .glass-card {
     @apply bg-white/70 backdrop-blur-xl border border-white/80 transition-all;
 }
+
+/* Custom styles from index.html migration */
+html {
+  scroll-behavior: smooth;
+}
+
+.shadow-3xl {
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.1);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #f97316;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  border: 3px solid white;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e2e8f0;
+  height: 8px;
+  border-radius: 4px;
+}
