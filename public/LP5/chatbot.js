@@ -348,7 +348,10 @@ class BeedoChatbot {
             this.hideTypingIndicator();
 
             if (!response.ok) {
-                throw new Error('API error');
+                const errorText = await response.text().catch(() => 'No text details');
+                const apiError = new Error('API error');
+                apiError.response = { status: response.status, data: errorText };
+                throw apiError;
             }
 
             const data = await response.json();
@@ -369,7 +372,17 @@ class BeedoChatbot {
             }
 
         } catch (error) {
-            console.error('Chat error:', error);
+            console.error('Chat error:', error.message || error);
+
+            if (error.response) {
+                console.error('API Error Status:', error.response.status);
+                console.error('API Error Data:', error.response.data);
+            } else if (error.request) {
+                console.error('API No Response:', error.request);
+            } else {
+                console.error('API Request Setup Error:', error.message);
+            }
+
             this.hideTypingIndicator();
             const fallbackMsg = "Neste momento a nossa equipa humana está a descansar, mas eu estou aqui 24/7. Deixe o seu contacto e amanhã entraremos em detalhe sobre a sua transição para a BEE.DO. Contacte-nos em **suporte@beedo.pt**";
             this.addBotMessage(fallbackMsg);
