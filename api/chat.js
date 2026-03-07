@@ -21,16 +21,16 @@ export default async function handler(req, res) {
     }
 
     try {
-        let { messages = [], customSystemPrompt, model = 'gemini-2.0-flash' } = req.body;
+        let { messages = [], customSystemPrompt, model = 'gemini-2.5-flash' } = req.body;
 
         // Strip "models/" prefix if it's there
         if (model.startsWith('models/')) {
             model = model.replace('models/', '');
         }
 
-        // Validate or fallback to guaranteed active gemini-2.0-flash model
-        if (!model.includes('gemini')) {
-            model = 'gemini-2.0-flash';
+        // Validate or fallback to guaranteed active model (new keys require 2.5)
+        if (!model.includes('gemini') || model.includes('2.0')) {
+            model = 'gemini-2.5-flash';
         }
 
 
