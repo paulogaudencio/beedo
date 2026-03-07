@@ -21,11 +21,16 @@ export default async function handler(req, res) {
     }
 
     try {
-        let { messages = [], customSystemPrompt, model = 'gemini-1.5-flash' } = req.body;
+        let { messages = [], customSystemPrompt, model = 'gemini-2.0-flash' } = req.body;
 
-        // Ensure we always use a valid v1beta model identifier
-        if (model.includes('gemini-2.0-flash') || model === 'gemini-1.5-flash-latest') {
-            model = 'gemini-1.5-flash';
+        // Strip "models/" prefix if it's there
+        if (model.startsWith('models/')) {
+            model = model.replace('models/', '');
+        }
+
+        // Validate or fallback to guaranteed active gemini-2.0-flash model
+        if (!model.includes('gemini')) {
+            model = 'gemini-2.0-flash';
         }
 
 
