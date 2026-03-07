@@ -2,10 +2,6 @@
     "redirects": [],
     "rewrites": [
         {
-            "source": "/",
-            "destination": "/LP5/lp5.html"
-        },
-        {
             "source": "/backoffice",
             "destination": "/backoffice/index.html"
         },
@@ -15,7 +11,7 @@
         },
         {
             "source": "/((?!api|LP|backoffice|logos|images).*)",
-            "destination": "/index.html"
+            "destination": "/app.html"
         }
     ]
 }
