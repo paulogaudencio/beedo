@@ -341,7 +341,7 @@ class BeedoChatbot {
                 body: JSON.stringify({
                     messages: history,
                     customSystemPrompt: this.customSystemPrompt,
-                    model: this.chatbotModel || 'gemini-2.0-flash'
+                    model: this.chatbotModel || 'gemini-1.5-flash'
                 }),
             });
 
