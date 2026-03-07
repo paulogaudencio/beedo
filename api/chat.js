@@ -24,8 +24,8 @@ export default async function handler(req, res) {
         let { messages = [], customSystemPrompt, model = 'gemini-1.5-flash' } = req.body;
 
         // Ensure we always use a valid v1beta model identifier
-        if (model.includes('gemini-2.0-flash') || model === 'gemini-1.5-flash') {
-            model = 'gemini-1.5-flash-latest';
+        if (model.includes('gemini-2.0-flash') || model === 'gemini-1.5-flash-latest') {
+            model = 'gemini-1.5-flash';
         }
 
 
