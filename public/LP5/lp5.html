@@ -453,6 +453,8 @@
             </div>
           </section>
 
+          <FAQ />
+
           <section id="como-funciona" className="py-24 bg-blue-600 text-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-[120px] -mr-48 -mt-48"></div>
@@ -460,7 +462,7 @@
             </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <h2 className="text-5xl font-black text-white mb-16 underline decoration-orange-500 decoration-4 underline-offset-8">Junte-se em <span className="text-white">4 passos simples</span></h2>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-left mb-32">
                 {[
                   { n: "01", t: "Fale connosco", d: "Conversa informal para conhecer o seu negócio." },
                   { n: "02", t: "Proposta", d: "Condições calculadas em função da sua carteira." },
@@ -476,16 +478,10 @@
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
 
-          <FAQ />
-
-          <section id="contacto" className="py-32">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-900 rounded-[64px] p-12 lg:p-24 text-center text-white relative overflow-hidden shadow-3xl">
-                <h2 className="text-4xl lg:text-7xl font-black mb-8 relative z-10">Pronto para ficar com 100%?</h2>
-                <div className="max-w-xl mx-auto bg-white/10 p-8 rounded-[32px] backdrop-blur-md border border-white/20 relative z-10 mb-12">
+              <div id="contacto" className="text-center text-white pt-16 border-t border-white/10 relative z-10">
+                <h2 className="text-4xl lg:text-7xl font-black mb-8">Pronto para ficar com 100%?</h2>
+                <div className="max-w-xl mx-auto bg-white/10 p-8 rounded-[32px] backdrop-blur-md border border-white/20 mb-12 shadow-2xl">
                   <form action="https://formsubmit.co/asalvo@beedo.pt" method="POST" className="flex flex-col gap-5 text-left">
                     <input type="hidden" name="_subject" value="Novo Lead - LP5 (BEE.DO)" />
                     <input type="hidden" name="_cc" value="pgaudencio.lx+beedo@gmail.com" />
@@ -519,7 +515,7 @@
                 </div>
                 <div className="flex items-center justify-center gap-3 relative z-10">
                   <Icon name="phone" size={18} />
-                  <span className="font-bold text-lg text-blue-50">+351 910 484 290</span>
+                  <span className="font-bold text-lg text-blue-50">Ou ligue para +351 910 484 290</span>
                 </div>
               </div>
             </div>
