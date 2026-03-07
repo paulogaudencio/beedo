@@ -10,7 +10,7 @@
             "destination": "/backoffice/index.html"
         },
         {
-            "source": "/((?!api|LP|backoffice|logos|images).*)",
+            "source": "/((?!api/|LP|backoffice|logos|images).*)",
             "destination": "/app.html"
         }
     ]
