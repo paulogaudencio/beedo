@@ -254,6 +254,24 @@
                         </div>
                     </div>
                     <div class="system-card">
+                        <h3>🧠 Modelo de IA do Chatbot</h3>
+                        <p class="system-desc">Selecione o modelo da Google Gemini que irá responder aos utilizadores.
+                        </p>
+                        <div class="retention-row" style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                            <label>Modelo</label>
+                            <select id="chatbot-model-select" class="filter-select" style="min-width: 250px;">
+                                <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                                <option value="gemini-2.0-flash" selected>Gemini 2.0 Flash</option>
+                                <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                                <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                            </select>
+                        </div>
+                        <div class="system-actions">
+                            <button id="save-model" class="save-btn">Guardar Modelo</button>
+                            <span id="model-status" class="status-text"></span>
+                        </div>
+                    </div>
+                    <div class="system-card">
                         <h3>💬 Mensagem de Boas-Vindas</h3>
                         <p class="system-desc">Defina a mensagem enviada automaticamente quando o utilizador abre o
                             chatbot.</p>

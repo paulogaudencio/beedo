@@ -116,6 +116,8 @@ class BackofficeApp {
 
         // System
         document.getElementById('save-prompt').addEventListener('click', () => this.saveSystemPrompt());
+        const saveModelBtn = document.getElementById('save-model');
+        if (saveModelBtn) saveModelBtn.addEventListener('click', () => this.saveChatbotModel());
         document.getElementById('save-welcome').addEventListener('click', () => this.saveWelcomeMessage());
         document.getElementById('save-retention').addEventListener('click', () => this.saveRetention());
         document.getElementById('purge-old-data').addEventListener('click', () => this.purgeOldData());
@@ -227,6 +229,10 @@ class BackofficeApp {
                 }
                 if (item.key === 'gdpr_retention_months') {
                     document.getElementById('retention-months').value = item.value || '12';
+                }
+                if (item.key === 'chatbot_model') {
+                    const sel = document.getElementById('chatbot-model-select');
+                    if (sel && item.value) sel.value = item.value;
                 }
             });
         }
@@ -376,6 +382,23 @@ class BackofficeApp {
         this.renderConversations(filtered);
     }
 
+    // ─── Markdown Rendering ──────────────────────────────────────
+    renderMarkdown(text) {
+        let html = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^[-•]\s+(.+)/gm, '<li>$1</li>')
+            .replace(/^\d+\.\s+(.+)/gm, '<li>$1</li>')
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+            .replace(/\n/g, '<br>');
+
+        html = html.replace(/((?:<li>.*?<\/li>(?:<br>)?)+)/g, '<ul>$1</ul>');
+        html = html.replace(/<br><\/ul>/g, '</ul>');
+        html = html.replace(/<ul><br>/g, '<ul>');
+
+        return html;
+    }
+
     async viewConversation(convId) {
         const messages = await this.supabaseQuery('messages', `?conversation_id=eq.${convId}&order=created_at.asc`);
         const body = document.getElementById('modal-body');
@@ -385,7 +408,8 @@ class BackofficeApp {
         } else {
             body.innerHTML = messages.map(m => {
                 const time = new Date(m.created_at).toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-                return `<div class="modal-message ${m.role}"><div>${m.content}</div><div class="msg-time">${time}</div></div>`;
+                const content = m.role === 'bot' ? this.renderMarkdown(m.content) : m.content;
+                return `<div class="modal-message ${m.role}"><div>${content}</div><div class="msg-time">${time}</div></div>`;
             }).join('');
         }
 
@@ -491,6 +515,32 @@ class BackofficeApp {
 
         statusEl.textContent = '✓ Guardado com sucesso';
         setTimeout(() => { statusEl.textContent = ''; }, 3000);
+    }
+
+    async saveChatbotModel() {
+        const value = document.getElementById('chatbot-model-select').value;
+        const statusEl = document.getElementById('model-status');
+
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/system_config`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${this.accessToken}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'resolution=merge-duplicates'
+                },
+                body: JSON.stringify({
+                    key: 'chatbot_model',
+                    value,
+                    updated_at: new Date().toISOString()
+                })
+            });
+            statusEl.textContent = '✓ Guardado com sucesso';
+            setTimeout(() => { statusEl.textContent = ''; }, 3000);
+        } catch (e) {
+            statusEl.textContent = 'Erro ao guardar';
+        }
     }
 
     async saveWelcomeMessage() {

@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { messages = [], customSystemPrompt } = req.body;
+        const { messages = [], customSystemPrompt, model = 'gemini-2.0-flash' } = req.body;
 
         // Build Gemini request
         const systemPrompt = customSystemPrompt ? customSystemPrompt : SYSTEM_PROMPT;
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
             ]
         };
 
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
 
         const response = await fetch(apiUrl, {
             method: 'POST',

@@ -64,6 +64,9 @@ class BeedoChatbot {
 
                 const welcomeConf = data.find(d => d.key === 'chatbot_welcome_message');
                 if (welcomeConf && welcomeConf.value) this.welcomeMessage = welcomeConf.value;
+
+                const modelConf = data.find(d => d.key === 'chatbot_model');
+                if (modelConf && modelConf.value) this.chatbotModel = modelConf.value;
             }
         } catch (e) {
             console.log('No system config loaded');
@@ -338,6 +341,7 @@ class BeedoChatbot {
                 body: JSON.stringify({
                     messages: history,
                     customSystemPrompt: this.customSystemPrompt,
+                    model: this.chatbotModel || 'gemini-2.0-flash'
                 }),
             });
 
@@ -367,7 +371,9 @@ class BeedoChatbot {
         } catch (error) {
             console.error('Chat error:', error);
             this.hideTypingIndicator();
-            this.addBotMessage("Neste momento a nossa equipa humana está a descansar, mas eu estou aqui 24/7. Deixe o seu contacto e amanhã entraremos em detalhe sobre a sua transição para a BEE.DO. Contacte-nos em **suporte@beedo.pt**");
+            const fallbackMsg = "Neste momento a nossa equipa humana está a descansar, mas eu estou aqui 24/7. Deixe o seu contacto e amanhã entraremos em detalhe sobre a sua transição para a BEE.DO. Contacte-nos em **suporte@beedo.pt**";
+            this.addBotMessage(fallbackMsg);
+            await this.saveMessage('bot', fallbackMsg);
         } finally {
             this.input.disabled = false;
             this.sendBtn.disabled = false;
