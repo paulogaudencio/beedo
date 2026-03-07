@@ -21,7 +21,12 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { messages = [], customSystemPrompt, model = 'gemini-2.0-flash' } = req.body;
+        let { messages = [], customSystemPrompt, model = 'gemini-1.5-flash' } = req.body;
+
+        // Force fallback if the client explicitly sent the deprecated 2.0 version
+        if (model === 'gemini-2.0-flash') {
+            model = 'gemini-1.5-flash';
+        }
 
         // Build Gemini request
         const systemPrompt = customSystemPrompt ? customSystemPrompt : SYSTEM_PROMPT;
