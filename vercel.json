@@ -1,12 +1,10 @@
 {
-    "redirects": [
+    "redirects": [],
+    "rewrites": [
         {
             "source": "/",
-            "destination": "/LP5/lp5.html",
-            "permanent": false
-        }
-    ],
-    "rewrites": [
+            "destination": "/LP5/lp5.html"
+        },
         {
             "source": "/backoffice",
             "destination": "/backoffice/index.html"
