@@ -91,8 +91,8 @@ const FAQ = () => {
         {
             title: "Contacto",
             items: [
-                { q: "Como posso marcar uma reunião com a equipa BEE.DO?", a: "Para marcar uma conversa com um dos responsáveis da BEE.DO, envie um email para parceiros@beedo.pt ou ligue para 910 484 290. A nossa equipa terá todo o gosto em apresentar o modelo em detalhe e responder a qualquer questão específica sobre o seu caso." },
-                { q: "O que acontece se tiver dúvidas sobre condições contratuais específicas?", a: "Questões relativas a condições contratuais específicas, preços individuais ou acordos personalizados merecem uma response personalizada. Recomendamos que contacte directamente a equipa BEE.DO através do email parceiros@beedo.pt ou pelo telefone 910 484 290." }
+                { q: "Como posso marcar uma reunião com a equipa BEE.DO?", a: (<span>Para marcar uma conversa com um dos responsáveis da BEE.DO, envie um email para <strong>parceiros@beedo.pt</strong> ou ligue para <strong>910 484 290</strong>. A nossa equipa terá todo o gosto em apresentar o modelo em detalhe e responder a qualquer questão específica sobre o seu caso.</span>) },
+                { q: "O que acontece se tiver dúvidas sobre condições contratuais específicas?", a: (<span>Questões relativas a condições contratuais específicas, preços individuais ou acordos personalizados merecem uma response personalizada. Recomendamos que contacte directamente a equipa BEE.DO através do email <strong>parceiros@beedo.pt</strong> ou pelo telefone <strong>910 484 290</strong>.</span>) }
             ]
         }
     ];

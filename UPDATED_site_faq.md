@@ -94,8 +94,8 @@ Sim. O parceiro mantém liberdade comercial total, com apoio técnico disponíve
 
 Como posso marcar uma reunião com a equipa BEE.DO?
 
-Para marcar uma conversa com um dos responsáveis da BEE.DO, envie um email para parceiros@beedo.pt ou ligue para 910 484 290\. A nossa equipa terá todo o gosto em apresentar o modelo em detalhe e responder a qualquer questão específica sobre o seu caso.
+Para marcar uma conversa com um dos responsáveis da BEE.DO, envie um email para **parceiros@beedo.pt** ou ligue para **910 484 290**\. A nossa equipa terá todo o gosto em apresentar o modelo em detalhe e responder a qualquer questão específica sobre o seu caso.
 
 O que acontece se tiver dúvidas sobre condições contratuais específicas?
 
-Questões relativas a condições contratuais específicas, preços individuais ou acordos personalizados merecem uma resposta personalizada. Recomendamos que contacte directamente a equipa BEE.DO através do email parceiros@beedo.pt ou pelo telefone 910 484 290\.
+Questões relativas a condições contratuais específicas, preços individuais ou acordos personalizados merecem uma resposta personalizada. Recomendamos que contacte directamente a equipa BEE.DO através do email **parceiros@beedo.pt** ou pelo telefone **910 484 290**\.
