@@ -417,8 +417,8 @@ body {
     min-width: 2rem;
 }
 
-.sentiment-bar.interested {
-    background: linear-gradient(90deg, #22C55E, #16A34A);
+.sentiment-bar.very_interested {
+    background: linear-gradient(90deg, #16A34A, #14532D);
 }
 
 .sentiment-bar.curious {
