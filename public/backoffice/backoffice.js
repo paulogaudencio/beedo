@@ -432,18 +432,23 @@ class BackofficeApp {
             const date = new Date(l.created_at).toLocaleString('pt-PT', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
             const statusLabel = { pending: 'Pendente', contacted: 'Contactado', converted: 'Convertido', archived: 'Arquivado' }[l.status] || l.status;
 
-            const nextStatus = l.status === 'pending' ? 'contacted' : l.status === 'contacted' ? 'converted' : null;
-            const nextLabel = l.status === 'pending' ? 'Marcar Contactado' : l.status === 'contacted' ? 'Marcar Convertido' : '';
-
             return `
                 <tr>
                     <td><strong>${l.name || '—'}</strong></td>
                     <td>${l.email || '—'}</td>
                     <td>${l.phone || '—'}</td>
                     <td>${date}</td>
-                    <td><span class="badge ${l.status}">${statusLabel}</span></td>
                     <td>
-                        ${nextStatus ? `<button class="action-btn status-btn" onclick="app.updateLeadStatus('${l.id}', '${nextStatus}')">${nextLabel}</button>` : ''}
+                        <select class="filter-select status-dropdown ${l.status}" onchange="app.updateLeadStatus('${l.id}', this.value)" style="padding-top: 4px; padding-bottom: 4px; width: 140px; font-size: 0.85rem; height: 32px;">
+                            <option value="New Lead" ${l.status === 'New Lead' ? 'selected' : ''}>New Lead</option>
+                            <option value="Reunião" ${l.status === 'Reunião' ? 'selected' : ''}>Reunião</option>
+                            <option value="Negociação" ${l.status === 'Negociação' ? 'selected' : ''}>Negociação</option>
+                            <option value="Deal Closed" ${l.status === 'Deal Closed' ? 'selected' : ''}>Deal Closed</option>
+                            ${['New Lead', 'Reunião', 'Negociação', 'Deal Closed'].includes(l.status) ? '' : `<option value="${l.status}" selected>${statusLabel}</option>`}
+                        </select>
+                    </td>
+                    <td>
+                        <!-- Status is now handled by the dropdown -->
                     </td>
                 </tr>
             `;

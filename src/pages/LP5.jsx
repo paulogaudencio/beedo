@@ -416,11 +416,45 @@ const LP5 = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-5xl lg:text-6xl font-black text-blue-600 mb-12">Pronto para ficar com 100%?</h2>
                     <div className="max-w-xl mx-auto bg-blue-600 p-8 md:p-12 rounded-[32px] mb-12 shadow-2xl">
-                        <form action="https://formsubmit.co/pgaudencio.lx+beedo@gmail.com" method="POST" className="flex flex-col gap-5 text-left">
-                            <input type="hidden" name="_subject" value="Novo Lead - LP5 (BEE.DO)" />
-                            <input type="hidden" name="_next" value="https://beedo-sandy.vercel.app/obrigado.html" />
-                            <input type="hidden" name="_captcha" value="false" />
-                            <input type="hidden" name="_template" value="table" />
+                        <form onSubmit={async (e) => {
+                            e.preventDefault();
+                            const form = e.target;
+                            const btn = form.querySelector('button[type="submit"]');
+                            const originalContent = btn.innerHTML;
+
+                            try {
+                                btn.innerHTML = 'Op a enviar...';
+                                btn.disabled = true;
+
+                                const formData = new FormData(form);
+                                const data = {
+                                    name: formData.get('Nome'),
+                                    email: formData.get('Email'),
+                                    phone: formData.get('Telefone'),
+                                    notes: formData.get('Empresa'),
+                                    status: 'New Lead'
+                                };
+
+                                const res = await fetch('https://jmcsmytmkywbzflesicw.supabase.co/rest/v1/leads', {
+                                    method: 'POST',
+                                    headers: {
+                                        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImptY3NteXRta3l3YnpmbGVzaWN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2Mzg5NTYsImV4cCI6MjA4ODIxNDk1Nn0.HHr2ru65TI9Sll4t4tlqAH_7rlRpsxFkQfoSvH-6mjo',
+                                        'Content-Type': 'application/json',
+                                        'Prefer': 'return=minimal'
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+
+                                if (!res.ok) throw new Error('Erro na resposta do servidor');
+
+                                window.location.href = '/obrigado.html';
+                            } catch (error) {
+                                console.error('Error submitting form:', error);
+                                alert('Ocorreu um erro ao enviar o formulário. Por favor, sente novamente mais tarde.');
+                                btn.innerHTML = originalContent;
+                                btn.disabled = false;
+                            }
+                        }} className="flex flex-col gap-5 text-left">
 
                             <div>
                                 <label className="text-sm font-bold text-white/90 mb-2 block ml-1">Nome</label>
